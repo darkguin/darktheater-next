@@ -1,38 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# `darktheater` Next.js frontend application
 
-## Getting Started
+A video streaming service with an emphasis on an online cinema that provides access to 0+ content and has various access levels, recommendations, user content collections
 
-First, run the development server:
+### Functional
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- View media content (movies, TV series, moments from movies, etc.) in real time;
+- Continue viewing media content from the place of the last interruption;
+- Getting personal recommendations based on already viewed media content
+- Getting “cold” recommendations based on new and/or popular content in a certain period of time;
+- Rating and leaving comments on the media content pages of interest;
+- Creating and editing your own lists of “I will watch", “I'm watching", “Viewed", “Postponed", “Abandoned".
+- View your own and/or other users (depending on the visibility settings in the account) lists “I will watch”, “I'm watching", “Viewed", “Postponed", “Abandoned".
+- Receiving notifications about updating the content of interest
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Security
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Ensure constant availability to the service by implementing protection against DDoS attacks
+- Ensure the confidentiality of user information
+- Ensure the protection of work with payment systems
+- Provide protection against the introduction of malicious code
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# Links
+**Demo:** [darktheater.net](https://darktheater.net) <br/>
+**Documentation:** [docs.darktheater.net](https://docs.darktheater.net)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Other repositories
+**Backend:** [darkguin/darktheater-backend](https://github.com/darkguin/darktheater-backend) <br/>
+**Documentation:** [darkguin/darktheater-documentation](https://github.com/darkguin/darktheater-documentation)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Contributors
+- `Andrei Petrov` - Team Leader, Frontend developer, UI/UX Designer
+- `Pavel Hardzei` - Backend developer
