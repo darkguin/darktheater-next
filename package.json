@@ -25,6 +25,7 @@
   "devDependencies": {
     "@ducanh2912/next-pwa": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "clsx": "^1.2.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
