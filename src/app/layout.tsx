@@ -1,7 +1,7 @@
 import '@styles/globals.scss';
 
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 export const metadata: Metadata = {
   title: 'Watch movies, TV series and anime for free and without registration only on darktheater',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout: FC<PropsWithChildren> = function ({ children }) {
   return (
     <html lang="en">
       <meta name="mobile-web-app-capable" content="yes" />
@@ -45,4 +45,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>{children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;
