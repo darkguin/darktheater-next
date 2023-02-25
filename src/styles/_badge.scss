@@ -1,0 +1,13 @@
+@use "vars";
+
+.badge {
+  padding: 0 8px;
+
+  &.admin-badge {
+    color: vars.$success-color;
+  }
+
+  &.verified-badge {
+    color: vars.$primary-color;
+  }
+}

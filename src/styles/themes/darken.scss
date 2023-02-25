@@ -1,0 +1,30 @@
+:root,
+[theme="darken"] {
+  // HEX
+  --dark-color: #0b0b0b;
+  --second-color: #1c1c1c;
+  --third-color: #1f1f1f;
+  --light-color: #f9f9f9;
+  --contrast-color: #00b9ae;
+
+  --title-color: #afafaf;
+  --descriptions-color: #c1c1c1;
+
+  --border-color: #525252;
+  --input-bg-color: #161616;
+  --btn-light-color: #353535;
+
+  // RGB
+  --dark-color-rgb: 11, 11, 11;
+  --second-color-rgb: 28, 28, 28;
+  --third-color-rgb: 31, 31, 31;
+  --light-color-rgb: 249, 249, 249;
+  --contrast-color-rgb: 0, 185, 174;
+
+  --title-color-rgb: 175, 175, 175;
+  --descriptions-color-rgb: 193, 193, 193;
+
+  --border-color-rgb: 82, 82, 82;
+  --input-bg-color-rgb: 22, 22, 22;
+  --btn-light-color-rgb: 53, 53, 53;
+}

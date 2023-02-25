@@ -1,0 +1,82 @@
+@use 'src/styles/vars';
+@use 'src/styles/animations/border-spinner';
+
+* {
+  box-sizing: border-box;
+}
+
+.auth-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  &__container {
+    aspect-ratio: 16 / 9;
+    width: clamp(800px, 80%, 1440px);
+    height: clamp(500px, 70%, 720px);
+    padding: 60px 80px;
+    border-radius: vars.$border-radius-lg;
+    box-shadow: 0 0 32px var(--dark-color);
+    color: var(--light-color);
+    background: var(--second-color);
+    background: linear-gradient(
+                    90deg,
+                    rgba(var(--second-color-rgb), 1) 45%,
+                    rgba(var(--second-color-rgb), 0.6) 100%
+    ),
+    url('/images/auth-preview-carousel.jpeg') no-repeat 0 100%;
+    background-size: auto 150%;
+    background-position: right 30%;
+    overflow: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      margin: vars.$border-radius-lg 0;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  &__logo {
+    text-decoration: none;
+    color: var(--contrast-color);
+  }
+}
+
+@media screen and (max-height: 865px) {
+  .auth-wrapper {
+    &__container {
+      padding: 40px 60px;
+    }
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .auth-wrapper {
+    align-items: flex-start;
+
+    &__container {
+      width: 100%;
+      height: calc(100% - 20px);
+      max-height: 100%;
+      margin: 10px;
+      padding: 25px;
+
+      background: none;
+      box-shadow: none;
+      //border-radius: 0;
+    }
+  }
+}

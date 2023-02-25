@@ -1,0 +1,22 @@
+@use "vars";
+
+@mixin aspect-ratio($x, $y) {
+  height: 0;
+  padding-bottom: calc($y / $x * 100%);
+}
+
+@mixin main-bg-gradient {
+  background: (
+          radial-gradient(
+                          28.08% 43.19% at 101.25% 21.92%,
+                          rgba(var(--contrast-color-rgb), 0.2) 0%,
+                          rgba(0, 0, 0, 0) 100%
+          ),
+          radial-gradient(
+                          24.74% 39.4% at 12.22% 54.79%,
+                          rgba(var(--contrast-color-rgb), 0.13) 0%,
+                          rgba(0, 0, 0, 0) 100%
+          ),
+          var(--dark-color)
+  );
+}

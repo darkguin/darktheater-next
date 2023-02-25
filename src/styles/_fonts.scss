@@ -1,0 +1,228 @@
+$base-font-family: "Gilroy" !important;
+
+@mixin font-extra-heavy {
+  font-family: $base-font-family;
+  font-weight: 900;
+}
+
+@mixin font-extra-bold {
+  font-family: $base-font-family;
+  font-weight: 800;
+}
+
+@mixin font-bold {
+  font-family: $base-font-family;
+  font-weight: bold;
+}
+
+@mixin font-semi-bold {
+  font-family: $base-font-family;
+  font-weight: 600;
+}
+
+@mixin font-medium {
+  font-family: $base-font-family;
+  font-weight: 500;
+}
+
+@mixin font-regular {
+  font-family: $base-font-family;
+  font-weight: normal;
+}
+
+@mixin font-light {
+  font-family: $base-font-family;
+  font-weight: 300;
+}
+
+@mixin font-ultra-light {
+  font-family: $base-font-family;
+  font-weight: 200;
+}
+
+@mixin font-thin {
+  font-family: $base-font-family;
+  font-weight: 100;
+}
+
+.title {
+  &-light-0 {
+    @include font-light;
+    font-size: 14px;
+  }
+
+  &-light-0_5 {
+    @include font-light;
+    font-size: 16px;
+  }
+
+  &-light-1 {
+    @include font-light;
+    font-size: 18px;
+  }
+
+  &-light-2 {
+    @include font-light;
+    font-size: 22px;
+  }
+
+  &-regular-0 {
+    @include font-regular;
+    font-size: 14px;
+  }
+
+  &-regular-1 {
+    @include font-regular;
+    font-size: 18px;
+  }
+
+  &-regular-2 {
+    @include font-regular;
+    font-size: 22px;
+  }
+
+  &-regular-3 {
+    @include font-regular;
+    font-size: 26px;
+  }
+
+  &-regular-4 {
+    @include font-regular;
+    font-size: 30px;
+  }
+
+  &-regular-5 {
+    @include font-regular;
+    font-size: 34px;
+  }
+
+  &-regular-6 {
+    @include font-regular;
+    font-size: 38px;
+  }
+
+  &-regular-7 {
+    @include font-regular;
+    font-size: 42px;
+  }
+
+  &-medium-0 {
+    @include font-medium;
+    font-size: 14px;
+  }
+
+  &-medium-1 {
+    @include font-medium;
+    font-size: 18px;
+  }
+
+  &-medium-2 {
+    @include font-medium;
+    font-size: 22px;
+  }
+
+  &-medium-3 {
+    @include font-medium;
+    font-size: 26px;
+  }
+
+  &-medium-4 {
+    @include font-medium;
+    font-size: 30px;
+  }
+
+  &-medium-5 {
+    @include font-medium;
+    font-size: 34px;
+  }
+
+  &-medium-6 {
+    @include font-medium;
+    font-size: 38px;
+  }
+
+  &-medium-7 {
+    @include font-medium;
+    font-size: 42px;
+  }
+
+  &-semi-bold-0 {
+    @include font-semi-bold;
+    font-size: 14px;
+  }
+
+  &-semi-bold-1 {
+    @include font-semi-bold;
+    font-size: 18px;
+  }
+
+  &-semi-bold-2 {
+    @include font-semi-bold;
+    font-size: 22px;
+  }
+
+  &-semi-bold-3 {
+    @include font-semi-bold;
+    font-size: 26px;
+  }
+
+  &-semi-bold-4 {
+    @include font-semi-bold;
+    font-size: 30px;
+  }
+
+  &-semi-bold-5 {
+    @include font-semi-bold;
+    font-size: 34px;
+  }
+
+  &-semi-bold-6 {
+    @include font-semi-bold;
+    font-size: 38px;
+  }
+
+  &-semi-bold-7 {
+    @include font-semi-bold;
+    font-size: 42px;
+  }
+
+  &-bold-0 {
+    @include font-bold;
+    font-size: 14px;
+  }
+
+  &-bold-1 {
+    @include font-bold;
+    font-size: 18px;
+  }
+
+  &-bold-2 {
+    @include font-bold;
+    font-size: 22px;
+  }
+
+  &-bold-3 {
+    @include font-bold;
+    font-size: 26px;
+  }
+
+  &-bold-4 {
+    @include font-bold;
+    font-size: 30px;
+  }
+
+  &-bold-5 {
+    @include font-bold;
+    font-size: 34px;
+  }
+
+  &-bold-6 {
+    @include font-bold;
+    font-size: 38px;
+  }
+
+  &-bold-7 {
+    @include font-bold;
+    font-size: 42px;
+  }
+}

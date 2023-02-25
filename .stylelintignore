@@ -1,0 +1,8 @@
+# Static files
+/public
+
+# Build artifacts
+/.astro
+/build
+/dist
+/node_modules

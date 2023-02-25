@@ -1,0 +1,78 @@
+@use "vars";
+
+.form {
+  width: fit-content;
+  padding: 8px 0;
+
+  &.form--loading {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+
+  @media screen and (max-width: vars.$screen-sm) {
+    width: 100%;
+  }
+
+  &__help_text {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: var(--contrast-color);
+  }
+
+  &__control {
+    margin-bottom: 16px;
+  }
+
+  &__btn {
+    width: 100%;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    &.f-center {
+      justify-content: center;
+    }
+
+    &.f-end {
+      justify-content: flex-end;
+    }
+
+    &.form__container--info {
+      margin-top: 38px;
+    }
+  }
+
+  &__modal {
+    &_header,
+    &_icon,
+    &_text {
+      text-align: center;
+    }
+
+    &_header {
+      margin-bottom: 38px;
+    }
+
+    &_icon {
+      margin-top: -8px;
+      margin-bottom: 8px;
+      font-size: 54px;
+    }
+  }
+}

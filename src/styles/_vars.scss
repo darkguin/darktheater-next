@@ -1,0 +1,24 @@
+@use "fonts";
+
+// SUPPORT COLORS
+$primary-color: rgba(67, 160, 255, 1);
+$success-color: rgba(0, 185, 174, 1);
+$danger-color: rgb(247, 114, 73);
+$warning-color: rgb(254, 222, 107);
+
+// BORDER
+$border-radius-sm: 16px;
+$border-radius-md: 32px;
+$border-radius-lg: 50px;
+
+// MEDIA
+$screen-sm: 767px;
+$screen-md: 992px;
+$screen-lg: 1280px;
+$screen-xs: 1366px;
+$screen-xl: 1600px;
+$screen-xxl: 1920px;
+$screen-xxxl: 2560px;
+$screen-xxxxl: 4000px;
+$screen-xxxxxl: 6000px;
+$screen-xxxxxxl: 8000px;

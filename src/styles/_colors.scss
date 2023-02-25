@@ -1,0 +1,21 @@
+@use "vars";
+
+.text-contrast {
+  color: var(--contrast-color);
+}
+
+.text-primary {
+  color: vars.$primary-color;
+}
+
+.text-success {
+  color: vars.$success-color;
+}
+
+.text-danger {
+  color: vars.$danger-color;
+}
+
+.text-warning {
+  color: vars.$warning-color;
+}

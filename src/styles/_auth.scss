@@ -1,0 +1,13 @@
+@use "vars";
+
+.auth-page {
+  &__title-container {
+    padding-top: 16px;
+    padding-bottom: 20px;
+  }
+
+  &__subtitle {
+    color: var(--title-color);
+    margin-bottom: 4px;
+  }
+}

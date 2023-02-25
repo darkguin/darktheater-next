@@ -1,0 +1,43 @@
+@use "../vars";
+
+@mixin border-color-state($top, $right, $bottom, $left) {
+  border-top: 3px solid rgba(var(--contrast-color-rgb), $top);
+  border-right: 3px solid rgba(var(--contrast-color-rgb), $right);
+  border-bottom: 3px solid rgba(var(--contrast-color-rgb), $bottom);
+  border-left: 3px solid rgba(var(--contrast-color-rgb), $left);
+}
+
+@mixin shadow-state($x, $y) {
+  box-shadow: $x $y 32px rgba(var(--contrast-color-rgb), 0.2);
+}
+
+.border-spinner {
+  animation-name: border-spinner;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+  @keyframes border-spinner {
+    from {
+      @include shadow-state(0, -10px);
+      @include border-color-state(1, 0.35, 0.2, 0.35);
+    }
+    25% {
+      @include shadow-state(10px, 0);
+      @include border-color-state(0.35, 1, 0.35, 0.2);
+    }
+    50% {
+      @include shadow-state(0, 10px);
+      @include border-color-state(0.2, 0.35, 1, 0.35);
+    }
+    75% {
+      @include shadow-state(-10px, 0);
+      @include border-color-state(0.35, 0.2, 0.35, 1);
+    }
+    to {
+      @include shadow-state(0, -10px);
+      @include border-color-state(1, 0.35, 0.2, 0.35);
+    }
+  }
+}
