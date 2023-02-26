@@ -16,7 +16,7 @@ const AuthWrapper: FC<PropsWithChildren> = function ({ children }) {
     <main className="auth-wrapper">
       <div className={clsx('auth-wrapper__container', isLoading && 'border-spinner')}>
         <div className="auth-wrapper__header">
-          <Link href={Routes.Home} className="auth-wrapper__logo title-bold-4">
+          <Link href={Routes.Home} as={Routes.Home} className="auth-wrapper__logo title-bold-4">
             {t.name}
           </Link>
         </div>

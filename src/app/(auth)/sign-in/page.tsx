@@ -19,7 +19,7 @@ export default function SignInPage() {
         <div className="form__container form__container--info title-regular-1">
           <div>
             <span style={{ paddingRight: 10 }}>{t.form['to-sign-up']}</span>
-            <Link href={Routes.SignUp} className="form__link">
+            <Link href={Routes.SignUp} as={Routes.SignUp} className="form__link">
               {t.form['to-sign-up-link']}
             </Link>
           </div>

@@ -88,7 +88,11 @@ const AuthForm: FC<Props> = function ({ type, onFormSubmit }) {
 
       {type === AuthFormType.SignIn ? (
         <div className="form__control form__container f-end">
-          <Link href={Routes.ResetPassword} className="form__link title-regular-1">
+          <Link
+            href={Routes.ResetPassword}
+            as={Routes.ResetPassword}
+            className="form__link title-regular-1"
+          >
             Forgot password?
           </Link>
         </div>

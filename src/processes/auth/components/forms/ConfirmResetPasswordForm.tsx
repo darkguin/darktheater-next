@@ -25,7 +25,7 @@ const ConfirmResetPasswordForm: FC = function () {
     if (confirmationType === ConfirmationType.PasswordChange) return () => {};
 
     confirmAction(confirmationType as ConfirmationType, token, ConfirmMessages.Success);
-  }, []);
+  });
 
   const confirmAction = async (
     type: ConfirmationType,
