@@ -1,4 +1,4 @@
-export const VerificationStrings = {
+export const ValidationMessages = {
   email: 'Incorrect email',
   min: '',
   required: '',

@@ -1,0 +1,26 @@
+import { StorageKey } from '@core/values';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { OptionsType as CookieOptions } from 'cookies-next/src/types';
+import { NextRequest, NextResponse } from 'next/server';
+
+const ONE_YEAR = 60 * 60 * 24 * 365;
+
+export function useAuthTokens(req?: NextRequest, res?: NextResponse) {
+  const options: CookieOptions = { path: '/', maxAge: ONE_YEAR };
+
+  if (res) Reflect.set(options, 'res', res);
+  if (req) Reflect.set(options, 'req', req);
+
+  const getAccessToken = () => (getCookie(StorageKey.AccessToken, options) as string) || '';
+  const setAccessToken = (value: string) => setCookie(StorageKey.AccessToken, value, options);
+
+  const getRefreshToken = () => (getCookie(StorageKey.RefreshToken, options) as string) || '';
+  const setRefreshToken = (value: string) => setCookie(StorageKey.RefreshToken, value, options);
+
+  const clearTokens = () => {
+    deleteCookie(StorageKey.AccessToken, options);
+    deleteCookie(StorageKey.RefreshToken, options);
+  };
+
+  return { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken, clearTokens };
+}
