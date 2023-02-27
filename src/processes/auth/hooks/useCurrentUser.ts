@@ -7,10 +7,9 @@ export function useCurrentUser() {
   const setCurrentUser = useCurrentUserStore((state) => state.setCurrentUser);
 
   const fetchCurrentUser = async () => {
-    return await fetchData().then((user: User) => {
-      setCurrentUser(user);
-      return user;
-    });
+    const user: User = await fetchData();
+    setCurrentUser(user);
+    return user;
   };
 
   return { setCurrentUser, currentUser, fetchCurrentUser };

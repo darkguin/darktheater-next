@@ -7,9 +7,8 @@ import { AuthForm, AuthFormType } from '@features/auth';
 import { useLoader } from '@features/loader';
 import { useAuth } from '@processes/auth';
 import { useRouter } from 'next/navigation';
-import { FC, memo } from 'react';
 
-const ResetPasswordForm: FC = function () {
+function ResetPasswordForm() {
   const router = useRouter();
   const { setLoading } = useLoader();
   const { sendConfirmEmail } = useAuth();
@@ -29,11 +28,7 @@ const ResetPasswordForm: FC = function () {
     }
   };
 
-  return (
-    <>
-      <AuthForm type={AuthFormType.ResetPassword} onFormSubmit={onSubmit} />
-    </>
-  );
-};
+  return <AuthForm type={AuthFormType.ResetPassword} onFormSubmit={onSubmit} />;
+}
 
-export default memo(ResetPasswordForm);
+export default ResetPasswordForm;

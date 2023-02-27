@@ -3,5 +3,4 @@ export type FieldState = {
   isDirty: boolean;
   isTouched: boolean;
   error?: Record<string, unknown> & { message?: string };
-  [key: string]: unknown;
-};
+} & Record<string, unknown>;

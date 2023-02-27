@@ -11,6 +11,7 @@ import React, {
   forwardRef,
   ForwardRefRenderFunction,
   HTMLInputTypeAttribute,
+  InputHTMLAttributes,
   memo,
   useEffect,
   useState,
@@ -22,8 +23,7 @@ type Props = {
   className?: string;
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  [key: string]: unknown;
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
 type FCRef = ForwardRefRenderFunction<HTMLInputElement, Props>;
 

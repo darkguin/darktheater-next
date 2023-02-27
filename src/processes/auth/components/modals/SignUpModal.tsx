@@ -2,8 +2,9 @@
 
 import './modal.scss';
 
-import ModalView from '@shared/ui/ModalView/component/ModalView';
-import { FC, memo } from 'react';
+import { SignUpPageStrings as t } from '@core/dictionaries';
+import ModalView, { ModalViewProps } from '@shared/ui/ModalView/component/ModalView';
+import { memo } from 'react';
 
 type Props = {
   email: string;
@@ -11,26 +12,21 @@ type Props = {
   isOpen?: boolean;
   onAccept?: () => void;
   onClose?: () => void;
-  [key: string]: unknown;
-};
+} & ModalViewProps;
 
-const SignUpModal: FC<Props> = function ({ email, ...props }) {
+function SignUpModal({ email, ...props }: Props) {
   return (
-    <>
-      <ModalView {...props}>
-        <div className="form__modal">
-          <div className="form__modal_header title-semi-bold-3 text-contrast">
-            You have successfully registered an account.
-          </div>
-          <div className="form__modal_text title-medium-1">
-            To use the account, you need to go to your
-            <b className="text-contrast">{email}</b>
-            mailbox and go through the email confirmation procedure.
-          </div>
+    <ModalView {...props}>
+      <div className="form__modal">
+        <div className="form__modal_header title-semi-bold-3 text-contrast">{t.modal.header}</div>
+        <div className="form__modal_text title-medium-1">
+          {t.modal.body['before-email']}
+          <b className="text-contrast">{email}</b>
+          {t.modal.body['after-email']}
         </div>
-      </ModalView>
-    </>
+      </div>
+    </ModalView>
   );
-};
+}
 
 export default memo(SignUpModal);

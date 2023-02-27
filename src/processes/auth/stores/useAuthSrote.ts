@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
-type AuthState = {
+interface AuthState {
   authorized: boolean;
   setAuthorizedStatus: (value: boolean) => void;
-};
+}
 
 export const useAuthStore = create<AuthState>((set) => ({
   authorized: false,

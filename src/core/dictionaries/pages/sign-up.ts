@@ -7,4 +7,11 @@ export const SignUpPageStrings = {
     'to-sign-in-link': 'Sign in',
     'to-reset-password-link': 'Forgot password?',
   },
+  modal: {
+    header: 'You have successfully registered an account.',
+    body: {
+      'before-email': 'To use the account, you need to go to your',
+      'after-email': 'mailbox and go through the email confirmation procedure.',
+    },
+  },
 };

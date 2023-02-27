@@ -7,9 +7,9 @@ import { useLoader } from '@features/loader';
 import { SignUpModal, useAuth } from '@processes/auth';
 import { useModal } from '@shared/ui';
 import { useRouter } from 'next/navigation';
-import { FC, memo, useState } from 'react';
+import { useState } from 'react';
 
-const SignUpForm: FC = function () {
+function SignUpForm() {
   const router = useRouter();
   const { signUp } = useAuth();
   const { setLoading } = useLoader();
@@ -43,13 +43,13 @@ const SignUpForm: FC = function () {
 
       <SignUpModal
         isOpen={isOpen}
-        email={formData?.email || ''}
+        email={formData?.email ?? ''}
         maxWidth="600px"
         onAccept={onCloseModal}
         onClose={onCloseModal}
       />
     </>
   );
-};
+}
 
-export default memo(SignUpForm);
+export default SignUpForm;

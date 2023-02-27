@@ -3,12 +3,9 @@
 import './loader.scss';
 
 import { useLoader } from '@features/loader';
-import { FC, memo } from 'react';
 
-const Loader: FC = function () {
+export default function Loader() {
   const { isLoading } = useLoader();
 
   return <> {isLoading ? <div className="loader"></div> : null}</>;
-};
-
-export default memo(Loader);
+}

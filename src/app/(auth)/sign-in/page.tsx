@@ -7,24 +7,22 @@ import Link from 'next/link';
 
 export default function SignInPage() {
   return (
-    <>
-      <section>
-        <header className="auth-page__title-container">
-          <div className="auth-page__subtitle title-bold-2">{t.form.subtitle}</div>
-          <div className="auth-page__title title-bold-7">{t.form.title}</div>
-        </header>
+    <section>
+      <header className="auth-page__title-container">
+        <div className="auth-page__subtitle title-bold-2">{t.form.subtitle}</div>
+        <div className="auth-page__title title-bold-7">{t.form.title}</div>
+      </header>
 
-        <SignInForm />
+      <SignInForm />
 
-        <div className="form__container form__container--info title-regular-1">
-          <div>
-            <span style={{ paddingRight: 10 }}>{t.form['to-sign-up']}</span>
-            <Link href={Routes.SignUp} as={Routes.SignUp} className="form__link">
-              {t.form['to-sign-up-link']}
-            </Link>
-          </div>
+      <div className="form__container form__container--info title-regular-1">
+        <div>
+          <span style={{ paddingRight: 10 }}>{t.form['to-sign-up']}</span>
+          <Link href={Routes.SignUp} as={Routes.SignUp} className="form__link">
+            {t.form['to-sign-up-link']}
+          </Link>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

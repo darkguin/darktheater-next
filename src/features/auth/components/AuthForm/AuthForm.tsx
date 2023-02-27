@@ -2,48 +2,41 @@
 
 import './AuthForm.scss';
 
+import { SignInPageStrings as SignInT } from '@core/dictionaries';
 import { Routes } from '@core/values';
 import { Credentials } from '@entities/session';
-import { AuthFormConfig, AuthFormType, RegexpValidation, ValidationMessages } from '@features/auth';
+import {
+  AuthFormConfig,
+  AuthFormType,
+  EmailValidationSchema,
+  PasswordValidationSchema,
+  UsernameValidationSchema,
+} from '@features/auth';
 import { useLoader } from '@features/loader';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField } from '@shared/ui/TextField';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 
-type Props = {
+interface Props {
   type: AuthFormType;
   onFormSubmit: (data: Credentials, reset: () => void) => void;
-};
+}
 
-const AuthForm: FC<Props> = function ({ type, onFormSubmit }) {
+function AuthForm({ type, onFormSubmit }: Props) {
   const { isLoading } = useLoader();
 
-  const config = AuthFormConfig[type];
-
-  const emailSchema = string()
-    .required(ValidationMessages.required)
-    .matches(new RegExp(RegexpValidation.Email), ValidationMessages.email);
-
-  const usernameSchema = string()
-    .required(ValidationMessages.required)
-    .min(3, ValidationMessages.min);
-
-  const passwordSchema = string()
-    .required(ValidationMessages.required)
-    .min(8, ValidationMessages.min)
-    .matches(new RegExp(RegexpValidation.NumberContains), ValidationMessages.numberContains)
-    .matches(new RegExp(RegexpValidation.UppercaseLetterContains), ValidationMessages.upperCase)
-    .matches(new RegExp(RegexpValidation.LowercaseLetterContains), ValidationMessages.lowerCase);
-
-  const schema = object({
-    email: config.emailControl ? emailSchema : string(),
-    username: config.usernameControl ? usernameSchema : string(),
-    password: config.passwordControl ? passwordSchema : string(),
-  }).required();
+  const [config] = useState(AuthFormConfig[type]);
+  const [schema] = useState(() => {
+    return object({
+      email: config.emailControl ? EmailValidationSchema : string(),
+      username: config.usernameControl ? UsernameValidationSchema : string(),
+      password: config.passwordControl ? PasswordValidationSchema : string(),
+    }).required();
+  });
 
   const { formState, register, handleSubmit, getFieldState, reset } = useForm({
     resolver: yupResolver(schema),
@@ -93,7 +86,7 @@ const AuthForm: FC<Props> = function ({ type, onFormSubmit }) {
             as={Routes.ResetPassword}
             className="form__link title-regular-1"
           >
-            Forgot password?
+            {SignInT.form['to-password-reset-link']}
           </Link>
         </div>
       ) : null}
@@ -105,6 +98,6 @@ const AuthForm: FC<Props> = function ({ type, onFormSubmit }) {
       </div>
     </form>
   );
-};
+}
 
 export default memo(AuthForm);

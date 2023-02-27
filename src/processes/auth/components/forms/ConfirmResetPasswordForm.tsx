@@ -7,24 +7,25 @@ import { AuthForm, AuthFormType } from '@features/auth';
 import { useLoader } from '@features/loader';
 import { ConfirmMessages, useConfirmation } from '@processes/auth';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { FC, memo, useEffect } from 'react';
+import { useEffect } from 'react';
 import { toast } from 'sonner';
 
-const ConfirmResetPasswordForm: FC = function () {
+const NOTIFICATION_DURATION = 8000;
+
+function ConfirmResetPasswordForm() {
   const router = useRouter();
   const query = useSearchParams();
 
   const { setLoading } = useLoader();
   const { confirmAction: confirmActionRaw } = useConfirmation();
 
-  let token = query.get('token') || '';
-  let confirmationType = query.get('type') || '';
+  const token = query.get('token') ?? '';
+  const confirmationType = query.get('type') ?? '';
 
   useEffect(() => {
-    if (!confirmationType || !token) return () => {};
-    if (confirmationType === ConfirmationType.PasswordChange) return () => {};
-
-    confirmAction(confirmationType as ConfirmationType, token, ConfirmMessages.Success);
+    if (token && confirmationType && confirmationType !== ConfirmationType.PasswordChange) {
+      confirmAction(confirmationType as ConfirmationType, token, ConfirmMessages.Success);
+    }
   });
 
   const confirmAction = async (
@@ -36,9 +37,9 @@ const ConfirmResetPasswordForm: FC = function () {
     try {
       setLoading(true);
       await confirmActionRaw(confirmationType as ConfirmationType, token, payload);
-      toast.success(msg, { duration: 80000 });
+      toast.success(msg, { duration: NOTIFICATION_DURATION });
     } catch {
-      toast.error(ConfirmMessages.Error, { duration: 80000 });
+      toast.error(ConfirmMessages.Error, { duration: NOTIFICATION_DURATION });
     } finally {
       setLoading(false);
       router.push(Routes.SignIn);
@@ -50,11 +51,7 @@ const ConfirmResetPasswordForm: FC = function () {
     await confirmAction(ConfirmationType.PasswordChange, token, message, password);
   };
 
-  return (
-    <>
-      <AuthForm type={AuthFormType.ConfirmResetPassword} onFormSubmit={onPasswordFormSubmit} />
-    </>
-  );
-};
+  return <AuthForm type={AuthFormType.ConfirmResetPassword} onFormSubmit={onPasswordFormSubmit} />;
+}
 
-export default memo(ConfirmResetPasswordForm);
+export default ConfirmResetPasswordForm;

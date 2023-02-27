@@ -8,10 +8,11 @@ import { useLoader } from '@features/loader';
 import { SignInModal, useAuth } from '@processes/auth';
 import { ApiErrorCodes, HttpErrorResponse } from '@providers/http-client';
 import { useModal } from '@shared/ui/ModalView';
+import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { FC, memo, useState } from 'react';
+import { useState } from 'react';
 
-const SignInForm: FC = function () {
+function SignInForm() {
   const router = useRouter();
   const { setLoading } = useLoader();
   const { signIn, sendConfirmEmail } = useAuth();
@@ -22,12 +23,9 @@ const SignInForm: FC = function () {
   const onCloseModal = () => closeModal();
 
   const onSubmitError = async ({ error_code }: HttpErrorResponse, email: string) => {
-    if (error_code === ApiErrorCodes.UserInactive) {
-      await sendConfirmEmail(ConfirmationType.EmailVerification, false, email).then(() => {
-        openModal();
-      });
-    }
-    setLoading(false);
+    if (error_code !== ApiErrorCodes.UserInactive) return;
+    await sendConfirmEmail(ConfirmationType.EmailVerification, false, email);
+    openModal();
   };
 
   const onSubmit = async (credentials: Credentials, resetForm: () => void) => {
@@ -38,11 +36,14 @@ const SignInForm: FC = function () {
       await signIn(credentials);
 
       resetForm();
-      setLoading(false);
-
       await router.push(Routes.Home);
-    } catch (e: any) {
-      await onSubmitError(e.response.data, credentials.email || '');
+    } catch (e: unknown) {
+      if (e instanceof AxiosError) {
+        if (!e.response) return;
+        await onSubmitError(e.response.data, credentials.email ?? '');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,13 +53,13 @@ const SignInForm: FC = function () {
 
       <SignInModal
         isOpen={isOpen}
-        email={formData?.email || ''}
+        email={formData?.email ?? ''}
         maxWidth="600px"
         onAccept={onCloseModal}
         onClose={onCloseModal}
       />
     </>
   );
-};
+}
 
-export default memo(SignInForm);
+export default SignInForm;

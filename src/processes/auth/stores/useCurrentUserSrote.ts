@@ -1,10 +1,10 @@
 import { User } from '@entities/user';
 import { create } from 'zustand';
 
-type UserState = {
+interface UserState {
   currentUser: User | null;
   setCurrentUser: (value: User | null) => void;
-};
+}
 
 export const useCurrentUserStore = create<UserState>((set) => ({
   currentUser: null,

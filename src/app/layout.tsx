@@ -2,7 +2,7 @@ import '@styles/globals.scss';
 
 import { VercelAnalyticsWrapper } from '@features/analytics';
 import type { Metadata } from 'next';
-import type { FC, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout: FC<PropsWithChildren> = function ({ children }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <meta name="mobile-web-app-capable" content="yes" />
@@ -59,6 +59,4 @@ const RootLayout: FC<PropsWithChildren> = function ({ children }) {
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

@@ -11,10 +11,10 @@ export function useAuthTokens(req?: NextRequest, res?: NextResponse) {
   if (res) Reflect.set(options, 'res', res);
   if (req) Reflect.set(options, 'req', req);
 
-  const getAccessToken = () => (getCookie(StorageKey.AccessToken, options) as string) || '';
+  const getAccessToken = () => (getCookie(StorageKey.AccessToken, options) as string) ?? '';
   const setAccessToken = (value: string) => setCookie(StorageKey.AccessToken, value, options);
 
-  const getRefreshToken = () => (getCookie(StorageKey.RefreshToken, options) as string) || '';
+  const getRefreshToken = () => (getCookie(StorageKey.RefreshToken, options) as string) ?? '';
   const setRefreshToken = (value: string) => setCookie(StorageKey.RefreshToken, value, options);
 
   const clearTokens = () => {
