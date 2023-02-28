@@ -1,5 +1,6 @@
 import '@styles/globals.scss';
 
+import { VercelAnalyticsWrapper } from '@features/analytics';
 import type { Metadata } from 'next';
 import type { FC, PropsWithChildren } from 'react';
 
@@ -43,6 +44,7 @@ const RootLayout: FC<PropsWithChildren> = function ({ children }) {
       {/*<meta property="og:image" content="https://yourdomain.com/icons/apple-touch-icon.png" />*/}
 
       <body>{children}</body>
+      <VercelAnalyticsWrapper />
     </html>
   );
 };
