@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField } from '@shared/ui/TextField';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 
@@ -100,4 +100,4 @@ function AuthForm({ type, onFormSubmit }: Props) {
   );
 }
 
-export default memo(AuthForm);
+export default AuthForm;

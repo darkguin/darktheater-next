@@ -7,7 +7,7 @@ import { Routes } from '@core/values';
 import { useLoader } from '@features/loader';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { memo, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 function AuthWrapper({ children }: PropsWithChildren) {
   const { isLoading } = useLoader();
@@ -27,4 +27,4 @@ function AuthWrapper({ children }: PropsWithChildren) {
   );
 }
 
-export default memo(AuthWrapper);
+export default AuthWrapper;
