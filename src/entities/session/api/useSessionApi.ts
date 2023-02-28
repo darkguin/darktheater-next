@@ -13,18 +13,23 @@ export function useSessionApi() {
     if (credentials.username) data.append('username', credentials.username);
     if (credentials.password) data.append('password', credentials.password);
 
-    return $http.post<ApiSession, ApiSession>(ENDPOINTS.SIGN_IN, data).then(SessionMapper.map);
+    return $http
+      .post<ApiSession>(ENDPOINTS.SIGN_IN, data)
+      .then(({ data }) => data)
+      .then(SessionMapper.map);
   };
 
   const signUp = (credentials: Credentials): Promise<Session> => {
     return $http
-      .post<ApiSession, ApiSession>(ENDPOINTS.SIGN_UP, { ...credentials })
+      .post<ApiSession>(ENDPOINTS.SIGN_UP, { ...credentials })
+      .then(({ data }) => data)
       .then(SessionMapper.map);
   };
 
   const refreshSession = (refresh_token: string): Promise<Session> => {
     return $http
-      .post<ApiSession, ApiSession>(ENDPOINTS.REFRESH_TOKEN, { refresh_token })
+      .post<ApiSession>(ENDPOINTS.REFRESH_TOKEN, { refresh_token })
+      .then(({ data }) => data)
       .then(SessionMapper.map);
   };
 
