@@ -1,0 +1,87 @@
+@use 'src/styles/vars';
+@use 'src/styles/buttons';
+
+* {
+  box-sizing: border-box;
+}
+
+.ReactModal__Content {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: scale(100%);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: scale(0%);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  min-width: 350px;
+  max-width: 85vw;
+  min-height: 100px;
+  max-height: 85vh;
+  background: var(--dark-color);
+  border: 3px solid var(--border-color);
+  border-radius: vars.$border-radius-sm;
+  z-index: 1000;
+  padding: 28px;
+  cursor: default;
+  overflow-y: auto;
+  margin: 32px;
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); // @NOTE: DON'T SUPPORT MOZILLA FIREFOX < v103
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--title-color);
+    margin-bottom: 38px;
+  }
+
+  &__body {
+    color: var(--descriptions-color);
+    margin-bottom: 38px;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__close {
+    font-size: 24px;
+    line-height: 0;
+    color: vars.$danger-color;
+    cursor: pointer;
+    margin-left: 38px;
+  }
+
+  &__button {
+    cursor: pointer;
+  }
+}

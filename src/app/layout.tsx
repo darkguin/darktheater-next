@@ -2,7 +2,8 @@ import '@styles/globals.scss';
 
 import { VercelAnalyticsWrapper } from '@features/analytics';
 import type { Metadata } from 'next';
-import type { FC, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'Watch movies, TV series and anime for free and without registration only on darktheater',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout: FC<PropsWithChildren> = function ({ children }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <meta name="mobile-web-app-capable" content="yes" />
@@ -43,10 +44,19 @@ const RootLayout: FC<PropsWithChildren> = function ({ children }) {
       {/*<meta property="og:url" content="https://yourdomain.com" />*/}
       {/*<meta property="og:image" content="https://yourdomain.com/icons/apple-touch-icon.png" />*/}
 
-      <body>{children}</body>
-      <VercelAnalyticsWrapper />
+      <body id="root">
+        {children}
+
+        <Toaster
+          position="bottom-right"
+          expand={true}
+          visibleToasts={6}
+          toastOptions={{ className: 'app-toast' }}
+          closeButton
+          richColors
+        />
+        <VercelAnalyticsWrapper />
+      </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

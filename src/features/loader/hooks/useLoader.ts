@@ -1,3 +1,5 @@
+'use client';
+
 import { useLoaderStore } from '@features/loader';
 
 export function useLoader() {

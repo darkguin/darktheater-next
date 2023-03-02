@@ -1,10 +1,11 @@
+'use client';
+
 import './loader.scss';
 
 import { useLoader } from '@features/loader';
-import { FC } from 'react';
 
-export const Loader: FC = function () {
+export default function Loader() {
   const { isLoading } = useLoader();
 
   return <> {isLoading ? <div className="loader"></div> : null}</>;
-};
+}
