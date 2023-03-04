@@ -5,8 +5,6 @@ import './Navbar.scss';
 import { AppStrings as AppT } from '@core/dictionaries';
 import { Routes } from '@core/values';
 import { NavbarSize } from '@features/navbar';
-import NavbarLogo from '@features/navbar/components/NavbarLogo/NavbarLogo';
-import NavbarSizeControl from '@features/navbar/components/NavbarSizeControl/NavbarSizeControl';
 import { useNavbarSize } from '@features/navbar/hooks';
 import { NavbarConfig } from '@features/navbar/values/navbar-config';
 import { useAuthStore } from '@processes/auth';
@@ -15,12 +13,20 @@ import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import NavbarLogo from '../NavbarLogo/NavbarLogo';
+import NavbarSizeControl from '../NavbarSizeControl/NavbarSizeControl';
+import NavbarVisibilityControl from '../NavbarVisibilityControl/NavbarVisibilityControl';
+
 const CATEGORIES = NavbarConfig.categories;
 const CATEGORIES_COUNT = CATEGORIES.length - 1;
 
-function Navbar() {
+interface Props {
+  defaultSize?: NavbarSize;
+}
+
+function Navbar({ defaultSize }: Props) {
   const router = useRouter();
-  const { navbarSize, setNavbarSize } = useNavbarSize();
+  const { navbarSize, setNavbarSize } = useNavbarSize(defaultSize);
 
   const authorized = useAuthStore((state) => state.authorized);
   const [isOpen, setVisibility] = useState(false);
@@ -35,7 +41,7 @@ function Navbar() {
     return router.push(path);
   };
 
-  const isShowItem = (auth: string | 'yes' | 'no' | '') => {
+  const isShowItem = (auth: string) => {
     return (auth === 'yes' && authorized) || (auth === 'no' && !authorized) || !auth;
   };
 
@@ -48,11 +54,7 @@ function Navbar() {
       )}
     >
       <header className="nav-bar__header">
-        <NavbarLogo
-          href={Routes.Home}
-          text={AppT.name}
-          variant={!isShort() || isOpen ? 'text' : 'image'}
-        />
+        <NavbarLogo href={Routes.Home} text={AppT.name} variant={!isShort() ? 'text' : 'image'} />
 
         <NavbarSizeControl
           className="nav-bar__size-control"
@@ -60,12 +62,11 @@ function Navbar() {
           onResize={setNavbarSize}
         />
 
-        <div
-          className="nav-bar__controls nav-bar__visibility-control"
-          onClick={() => onVisibilityChanged(!isOpen)}
-        >
-          <div className="nav-bar__control"></div>
-        </div>
+        <NavbarVisibilityControl
+          isOpen={isOpen}
+          className="nav-bar__visibility-control"
+          onVisibilityChanged={onVisibilityChanged}
+        />
       </header>
 
       <div className="nav-bar__categories">
