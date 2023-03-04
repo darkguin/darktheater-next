@@ -9,5 +9,5 @@ interface Props {
 }
 
 export default function FontIcon({ name, className }: Props) {
-  return <i className={clsx('icon', name)}></i>;
+  return <i className={clsx('icon', name, className)}></i>;
 }
