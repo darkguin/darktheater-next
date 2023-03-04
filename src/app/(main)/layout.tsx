@@ -7,7 +7,7 @@ import Navbar from '@features/navbar/components/Navbar/Navbar';
 import { cookies } from 'next/headers';
 import type { PropsWithChildren } from 'react';
 
-export default function AuthLayout({ children }: PropsWithChildren) {
+export default function MainLayout({ children }: PropsWithChildren) {
   const getNavbarSize = () => {
     return cookies().get(StorageKey.NavbarSize)?.value as NavbarSize;
   };

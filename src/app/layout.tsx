@@ -1,10 +1,7 @@
 import '@styles/globals.scss';
 
 import { VercelAnalyticsWrapper } from '@features/analytics';
-import { registerAuthInterceptor } from '@processes/auth/interceptors';
-import { withHttpClient } from '@providers/http-client';
 import type { Metadata } from 'next';
-import { cookies, headers } from 'next/headers';
 import type { PropsWithChildren } from 'react';
 import { Toaster } from 'sonner';
 
@@ -21,9 +18,6 @@ export const metadata: Metadata = {
     title: 'darktheater',
   },
 };
-
-const httpClient = withHttpClient();
-registerAuthInterceptor(httpClient, cookies, headers);
 
 export default function RootLayout({ children }: PropsWithChildren<any>) {
   return (
