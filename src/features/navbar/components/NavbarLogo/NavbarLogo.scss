@@ -1,0 +1,29 @@
+@use "src/styles/vars";
+
+.navbar-logo {
+  color: var(--contrast-color);
+  display: flex;
+  font-size: 28px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &__image {
+    height: 35px;
+    width: 35px;
+  }
+
+  &.navbar-logo--with-image {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .navbar-logo {
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+}

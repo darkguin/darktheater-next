@@ -1,0 +1,30 @@
+@use "src/styles/vars";
+
+.navbar-size-control {
+  font-size: 16px;
+  line-height: 1;
+  position: relative;
+  width: 100%;
+
+  &__button {
+    align-items: center;
+    background: var(--second-color);
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: var(--title-color);
+    cursor: pointer;
+    display: flex;
+    height: 38px;
+    justify-content: center;
+    line-height: 0;
+    position: absolute;
+    right: -18px;
+    width: 34px;
+    z-index: 98;
+
+    &:hover {
+      color: var(--contrast-color);
+      transition: all 700ms;
+    }
+  }
+}
