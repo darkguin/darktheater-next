@@ -1,4 +1,4 @@
-export enum Routes {
+export enum Route {
   Home = '/',
   SignIn = '/sign-in',
   SignUp = '/sign-up',
@@ -8,10 +8,4 @@ export enum Routes {
   Profile = '/profile',
 }
 
-export const RoutesList = [
-  Routes.Home,
-  Routes.SignIn,
-  Routes.SignUp,
-  Routes.ResetPassword,
-  Routes.Confirmation,
-];
+export const RoutesList = Object.values(Route);

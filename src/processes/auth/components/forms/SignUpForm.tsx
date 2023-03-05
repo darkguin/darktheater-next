@@ -1,6 +1,6 @@
 'use client';
 
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
 import { useLoader } from '@features/loader';
@@ -19,7 +19,7 @@ function SignUpForm() {
 
   const onCloseModal = () => {
     closeModal();
-    router.push(Routes.SignIn);
+    router.push(Route.SignIn);
   };
 
   const onSubmit = async (credentials: Credentials, resetForm: () => void) => {

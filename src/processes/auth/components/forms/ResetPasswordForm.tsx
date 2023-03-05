@@ -1,6 +1,6 @@
 'use client';
 
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { ConfirmationType } from '@entities/confirmation';
 import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
@@ -22,7 +22,7 @@ function ResetPasswordForm() {
       resetForm();
       setLoading(false);
 
-      await router.push(Routes.SignIn);
+      await router.push(Route.SignIn);
     } catch {
       setLoading(false);
     }

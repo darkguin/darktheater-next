@@ -3,7 +3,7 @@
 import './Navbar.scss';
 
 import { AppStrings as AppT } from '@core/dictionaries';
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { NavbarSize } from '@features/navbar';
 import { useNavbarSize } from '@features/navbar/hooks';
 import { NavbarConfig } from '@features/navbar/values/navbar-config';
@@ -29,13 +29,9 @@ function Navbar({ defaultSize }: Props) {
   const { navbarSize, setNavbarSize } = useNavbarSize(defaultSize);
 
   const authorized = useAuthStore((state) => state.authorized);
-  const [isOpen, setVisibility] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const isShort = () => navbarSize === NavbarSize.SMALL;
-
-  const onVisibilityChanged = (state: boolean) => {
-    return setVisibility(state);
-  };
 
   const onItemClick = (path: string) => {
     return router.push(path);
@@ -54,7 +50,7 @@ function Navbar({ defaultSize }: Props) {
       )}
     >
       <header className="nav-bar__header">
-        <NavbarLogo href={Routes.Home} text={AppT.name} variant={!isShort() ? 'text' : 'image'} />
+        <NavbarLogo href={Route.Home} text={AppT.name} variant={!isShort() ? 'text' : 'image'} />
 
         <NavbarSizeControl
           className="nav-bar__size-control"
@@ -65,7 +61,7 @@ function Navbar({ defaultSize }: Props) {
         <NavbarVisibilityControl
           isOpen={isOpen}
           className="nav-bar__visibility-control"
-          onVisibilityChanged={onVisibilityChanged}
+          onVisibilityChanged={setIsOpen}
         />
       </header>
 

@@ -3,7 +3,7 @@
 import './AuthForm.scss';
 
 import { SignInPageStrings as SignInT } from '@core/dictionaries';
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { Credentials } from '@entities/session';
 import {
   AuthFormConfig,
@@ -82,8 +82,8 @@ function AuthForm({ type, onFormSubmit }: Props) {
       {type === AuthFormType.SignIn ? (
         <div className="form__control form__container f-end">
           <Link
-            href={Routes.ResetPassword}
-            as={Routes.ResetPassword}
+            href={Route.ResetPassword}
+            as={Route.ResetPassword}
             className="form__link title-regular-1"
           >
             {SignInT.form['to-password-reset-link']}

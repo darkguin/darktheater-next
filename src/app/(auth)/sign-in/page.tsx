@@ -1,7 +1,7 @@
 import './page.scss';
 
 import { SignInPageStrings as t } from '@core/dictionaries';
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { SignInForm } from '@processes/auth';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ export default function SignInPage() {
       <div className="form__container form__container--info title-regular-1">
         <div>
           <span style={{ paddingRight: 10 }}>{t.form['to-sign-up']}</span>
-          <Link href={Routes.SignUp} as={Routes.SignUp} className="form__link">
+          <Link href={Route.SignUp} as={Route.SignUp} className="form__link">
             {t.form['to-sign-up-link']}
           </Link>
         </div>

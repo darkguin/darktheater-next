@@ -8,13 +8,11 @@ import { cookies } from 'next/headers';
 import type { PropsWithChildren } from 'react';
 
 export default function MainLayout({ children }: PropsWithChildren) {
-  const getNavbarSize = () => {
-    return cookies().get(StorageKey.NavbarSize)?.value as NavbarSize;
-  };
+  const navbarSize = cookies().get(StorageKey.NavbarSize)?.value as NavbarSize;
 
   return (
     <div className="main-layout">
-      <Navbar defaultSize={getNavbarSize()} />
+      <Navbar defaultSize={navbarSize} />
       <main className="main-layout__page">{children}</main>
     </div>
   );

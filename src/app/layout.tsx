@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: PropsWithChildren<any>) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <meta name="mobile-web-app-capable" content="yes" />

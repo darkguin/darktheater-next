@@ -1,6 +1,6 @@
 'use client';
 
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { ConfirmationType } from '@entities/confirmation';
 import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
@@ -36,7 +36,7 @@ function SignInForm() {
       await signIn(credentials);
 
       resetForm();
-      await router.push(Routes.Home);
+      await router.push(Route.Home);
     } catch (e: unknown) {
       if (e instanceof AxiosError) {
         if (!e.response) return;
