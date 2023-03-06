@@ -1,7 +1,7 @@
 import './page.scss';
 
 import { ResetPasswordPageStrings as t } from '@core/dictionaries';
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { ResetPasswordForm } from '@processes/auth';
 import Link from 'next/link';
 
@@ -18,12 +18,12 @@ export default function ResetPasswordPage() {
       <div className="form__container form__container--info title-regular-1">
         <div>
           <span style={{ paddingRight: '10px' }}>{t.form['pfx_to-sign-in-link']}</span>
-          <Link href={Routes.SignIn} as={Routes.SignIn} className="form__link">
+          <Link href={Route.SignIn} as={Route.SignIn} className="form__link">
             {t.form['to-sign-in-link']}
           </Link>
 
           <span style={{ padding: '0 10px' }}>{t.form['pfx_to-sign-up-link']}</span>
-          <Link href={Routes.SignUp} as={Routes.SignUp} className="form__link">
+          <Link href={Route.SignUp} as={Route.SignUp} className="form__link">
             {t.form['to-sign-up-link']}
           </Link>
         </div>

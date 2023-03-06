@@ -1,0 +1,168 @@
+@use "src/styles/vars";
+
+.nav-bar {
+  align-items: flex-start;
+  background: var(--second-color);
+  color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  padding: 28px 0 28px 28px;
+  transition: width 300ms;
+  width: 230px;
+
+  &__header {
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+
+    @media screen and (max-width: vars.$screen-sm) {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  &__categories {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    @media screen and (max-width: vars.$screen-sm) {
+      font-size: 0;
+      height: 0;
+      opacity: 0;
+      transition: font-size 100ms, opacity 150ms, height 100ms;
+      visibility: hidden;
+    }
+  }
+
+  &__category {
+    &.nav-bar__category--last {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    &-title {
+      color: var(--title-color);
+      margin-bottom: 10px;
+      margin-top: 40px;
+    }
+
+    &,
+    &-items {
+      width: 100%;
+    }
+  }
+
+  &__item {
+    align-items: center;
+    border-right: 3px solid rgba(var(--contrast-color-rgb), 0);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 0;
+    width: 100%;
+
+    &:hover {
+      border-right: 3px solid var(--contrast-color);
+      color: var(--contrast-color);
+      transition: color 300ms, border-right-color 500ms;
+    }
+
+    &-icon {
+      font-size: 24px;
+      line-height: 0;
+    }
+
+    &-title {
+      display: inline;
+      margin-left: 15px;
+      transition: all 300ms;
+      white-space: nowrap;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.nav-bar--open {
+    height: auto;
+  }
+}
+
+// Узкий навигационный бар только на декстопе
+$min-screen-width: calc(#{vars.$screen-sm} + 1px);
+
+@media screen and (min-width: $min-screen-width) {
+  .nav-bar.nav-bar--short {
+    align-items: center;
+    padding: 28px 0;
+    transition: all 300ms;
+    width: 70px;
+
+    .nav-bar__item {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .nav-bar__category-title {
+      opacity: 0;
+      transition: all 100ms;
+    }
+
+    .nav-bar__item-title {
+      font-size: 0;
+      opacity: 0;
+      transition: font-size 0ms, opacity 300ms;
+      width: 0;
+    }
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .nav-bar {
+    border-bottom: 2px solid var(--border-color);
+    border-radius: 0 0 vars.$border-radius-sm vars.$border-radius-sm;
+    border-right: none;
+    height: fit-content;
+    max-height: 92vh;
+    padding: 8px 16px;
+    position: fixed;
+    transition: all 0s;
+    width: 100vw;
+    z-index: 1000;
+
+    &__size-control {
+      display: none;
+    }
+
+    &.nav-bar--open {
+      .nav-bar__categories {
+        font-size: inherit;
+        height: fit-content;
+        max-height: 100vh;
+        opacity: 1;
+        overflow-y: auto;
+        visibility: visible;
+      }
+    }
+
+    &__logo {
+      font-size: 28px;
+    }
+  }
+}

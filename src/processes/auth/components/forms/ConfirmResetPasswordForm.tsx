@@ -1,6 +1,6 @@
 'use client';
 
-import { Routes } from '@core/values';
+import { Route } from '@core/values';
 import { ConfirmationType } from '@entities/confirmation';
 import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
@@ -42,7 +42,7 @@ function ConfirmResetPasswordForm() {
       toast.error(ConfirmMessages.Error, { duration: NOTIFICATION_DURATION });
     } finally {
       setLoading(false);
-      router.push(Routes.SignIn);
+      router.push(Route.SignIn);
     }
   };
 
