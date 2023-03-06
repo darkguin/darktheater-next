@@ -28,10 +28,10 @@ function Navbar({ defaultSize }: Props) {
   const router = useRouter();
   const { navbarSize, setNavbarSize } = useNavbarSize(defaultSize);
 
-  const authorized = useAuthStore((state) => state.authorized);
   const [isOpen, setIsOpen] = useState(false);
 
-  const isShort = () => navbarSize === NavbarSize.SMALL;
+  const isShort = navbarSize === NavbarSize.SMALL;
+  const authorized = useAuthStore((state) => state.authorized);
 
   const onItemClick = (path: string) => {
     return router.push(path);
@@ -46,11 +46,11 @@ function Navbar({ defaultSize }: Props) {
       className={clsx(
         'nav-bar title-semi-bold-1',
         isOpen && 'nav-bar--open',
-        isShort() && 'nav-bar--short',
+        isShort && 'nav-bar--short',
       )}
     >
       <header className="nav-bar__header">
-        <NavbarLogo href={Route.Home} text={AppT.name} variant={!isShort() ? 'text' : 'image'} />
+        <NavbarLogo href={Route.Home} text={AppT.name} variant={!isShort ? 'text' : 'image'} />
 
         <NavbarSizeControl
           className="nav-bar__size-control"

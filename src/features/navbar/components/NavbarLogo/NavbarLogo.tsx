@@ -12,14 +12,14 @@ interface Props {
 }
 
 function NavbarLogo({ text = '', href = '#', variant = 'text' }: Props) {
-  const isText = () => variant === 'text';
+  const isText = variant === 'text';
 
   return (
     <Link
       href={href}
-      className={clsx('navbar-logo title-bold-4', !isText() && 'navbar-logo--with-image')}
+      className={clsx('navbar-logo title-bold-4', !isText && 'navbar-logo--with-image')}
     >
-      {isText() ? (
+      {isText ? (
         text
       ) : (
         <Image
