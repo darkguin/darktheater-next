@@ -1,3 +1,5 @@
+import { PageWrapper } from '@features/page-wrapper';
+
 export default function Home() {
-  return <></>;
+  return <PageWrapper sidebar={<div></div>}></PageWrapper>;
 }

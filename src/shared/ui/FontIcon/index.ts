@@ -1,4 +1,2 @@
-import { default as FontIcon } from './component/FontIcon';
-import { Icons } from './values/Icons';
-
-export { FontIcon, Icons };
+export { default as FontIcon } from './component/FontIcon';
+export { Icons } from './values/Icons';
