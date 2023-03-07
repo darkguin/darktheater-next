@@ -5,6 +5,6 @@ export interface Playlist {
   id: number;
   title: string;
   description: string;
-  playlistType: PlaylistType;
-  playlistItems: Media[];
+  type: PlaylistType;
+  items: Media[];
 }

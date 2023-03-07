@@ -13,8 +13,8 @@ export class PlaylistMapper {
       id: api.id,
       title: api.title,
       description: api.description,
-      playlistType: api.playlist_type,
-      playlistItems: (api.playlist_items || []).map(MediaMapper.map),
+      type: api.playlist_type,
+      items: (api.playlist_items || []).map(MediaMapper.map),
     };
   }
 }

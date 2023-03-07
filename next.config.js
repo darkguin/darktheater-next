@@ -15,6 +15,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  images: {
+    domains: ['viasat-small.cdnvideo.ru'],
+  },
 };
 
 module.exports = withPWA(nextConfig);

@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^8.0.0",
-    "@vercel/analytics": "^0.1.11",
     "@hookform/resolvers": "^2.9.11",
+    "@vercel/analytics": "^0.1.11",
     "clsx": "^1.2.1",
     "cookie-cutter": "^0.2.0",
     "cookies-next": "^2.1.1",
@@ -24,6 +24,7 @@
     "server-only": "^0.0.1",
     "sharp": "^0.31.3",
     "sonner": "^0.1.1",
+    "swiper": "^9.1.0",
     "universal-cookie": "^4.0.4",
     "url-join": "^5.0.0",
     "yup": "^1.0.1",

@@ -1,0 +1,26 @@
+@use "src/styles/vars";
+@use "src/styles/fonts";
+@use "src/styles/buttons";
+
+.home {
+  &__block {
+    width: 100%;
+  }
+
+  &__title {
+    @include fonts.font-bold;
+
+    padding-top: 10px;
+    color: var(--light-color);
+    font-size: 30px;
+    line-height: 1;
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .home {
+    &__title {
+      font-size: 28px;
+    }
+  }
+}
