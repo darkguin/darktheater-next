@@ -1,0 +1,171 @@
+@use "src/styles/vars";
+@use "src/styles/buttons";
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  &__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-right: 8px;
+    margin-right: 8px;
+  }
+
+  &__sidebar {
+    background: var(--second-color);
+    border-radius: vars.$border-radius-sm;
+    width: clamp(300px, 40%, 400px);
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+
+    &-control.btn {
+      display: none;
+    }
+  }
+
+  &__container.page--without-sidebar {
+    grid-template-columns: 1fr;
+
+    .page__main {
+      margin-right: 0;
+    }
+
+    .page__sidebar {
+      display: none;
+    }
+
+    .page__sidebar-control.btn {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: calc(#{vars.$screen-xxl} + 1px)) {
+  .page__container {
+    width: vars.$screen-xxl;
+  }
+}
+
+@media screen and (max-width: vars.$screen-lg) {
+  .page {
+    &__container {
+      overflow: auto;
+      padding: 16px;
+    }
+
+    &__main {
+      margin-right: 0;
+    }
+
+    &__sidebar {
+      position: fixed;
+      top: 22px;
+      right: -432px;
+      bottom: 22px;
+      width: 400px;
+      height: auto;
+      border-radius: vars.$border-radius-md;
+      background: var(--second-color);
+      z-index: 100;
+      visibility: hidden;
+      transition: all 500ms;
+
+      &.active {
+        visibility: visible;
+        right: 22px;
+        transition: all 500ms;
+      }
+
+      &-control.btn {
+        display: block;
+        position: fixed;
+        right: 40px;
+        bottom: 40px;
+        padding: 8px !important;
+        z-index: 101;
+        transition: all 500ms;
+      }
+
+      &.active + &-control.btn {
+        right: 48px;
+        bottom: 48px;
+        transition: all 500ms;
+      }
+    }
+
+    &__container.page--without-sidebar {
+      .page__sidebar-control.btn {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .page {
+    &__container {
+      padding: 12px 8px 12px 12px;
+    }
+
+    &__main {
+      padding: 0 4px 0 0;
+    }
+
+    &__sidebar {
+      border-radius: vars.$border-radius-sm;
+
+      &.active {
+        width: auto;
+        top: calc(60px + 9px);
+        right: 9px;
+        bottom: 9px;
+        left: 9px;
+      }
+
+      &-control.btn {
+        right: 20px;
+        bottom: 20px;
+      }
+
+      &.active + &-control.btn {
+        right: 28px;
+        bottom: 28px;
+      }
+    }
+  }
+}
