@@ -6,6 +6,7 @@ import { PageWrapper } from '@features/page-wrapper';
 import { useAuthStore } from '@processes/auth';
 import { ContentSlide } from '@shared/ui/Slider';
 
+import { PromoBanner } from '@/features/promo-banner';
 import { Slider } from '@/shared/ui/Slider';
 
 const PlaylistIds = [1, 3, 5];
@@ -21,7 +22,7 @@ async function fetchData() {
 
 export default async function Home() {
   const playlists = await fetchData();
-  
+
   const { authorized } = useAuthStore.getState();
 
   return (
@@ -49,7 +50,7 @@ export default async function Home() {
             </div>
           ) : null}
 
-          {!authorized && i == 1 ? <div className="promo-banner"></div> : null}
+          {!authorized && i == 1 ? <PromoBanner /> : null}
         </div>
       ))}
     </PageWrapper>
