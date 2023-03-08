@@ -1,4 +1,4 @@
-import { HttpClient } from '@providers/http-client/http-client';
+import { HttpClient } from './http-client';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
 
