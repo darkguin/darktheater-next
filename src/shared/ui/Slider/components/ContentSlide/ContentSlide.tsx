@@ -19,7 +19,7 @@ function ContentSlide({ id, contentType, image = '', title = '', subtitle = '' }
   return (
     <div className="content-slide">
       {image ? (
-        <Image className="content-slide__image" src={image} alt={title} width={1525} height={712} />
+        <Image className="content-slide__image" src={image} alt={title} fill={true} />
       ) : null}
 
       <div className="content-slide__content">
