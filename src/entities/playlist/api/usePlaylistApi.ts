@@ -10,16 +10,12 @@ export function usePlaylistApi() {
   const fetchAll = (page = 1, size = 10): Promise<Playlist[]> => {
     return $http
       .get<ApiPlaylist[]>(ENDPOINTS.PLAYLISTS, { params: { page, size } })
-      .then(({ data }) => data)
       .then(PlaylistMapper.mapMany);
   };
 
-  const fetchById = (id: number | string): Promise<Playlist[]> => {
+  const fetchById = (id: number | string): Promise<Playlist> => {
     const path = ENDPOINTS.PLAYLISTS_ID.replace(':id', id.toString());
-    return $http
-      .get<ApiPlaylist[]>(path)
-      .then(({ data }) => data)
-      .then(PlaylistMapper.mapMany);
+    return $http.get<ApiPlaylist>(path).then(PlaylistMapper.map);
   };
 
   return { fetchAll, fetchById };

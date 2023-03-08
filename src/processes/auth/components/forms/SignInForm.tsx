@@ -6,9 +6,8 @@ import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
 import { useLoader } from '@features/loader';
 import { SignInModal, useAuth } from '@processes/auth';
-import { ApiErrorCodes, HttpErrorResponse } from '@providers/http-client';
+import { ApiErrorCodes, HttpError, HttpErrorResponse } from '@providers/http-client';
 import { useModal } from '@shared/ui/ModalView';
-import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -38,10 +37,8 @@ function SignInForm() {
       resetForm();
       await router.push(Route.Home);
     } catch (e: unknown) {
-      if (e instanceof AxiosError) {
-        if (!e.response) return;
-        await onSubmitError(e.response.data, credentials.email ?? '');
-      }
+      const response = await (e as HttpError).json();
+      await onSubmitError(response, credentials.email ?? '');
     } finally {
       setLoading(false);
     }

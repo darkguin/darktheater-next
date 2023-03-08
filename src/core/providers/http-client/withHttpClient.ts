@@ -1,10 +1,8 @@
-import axios from 'axios';
+import { HttpClient } from '@providers/http-client/http-client';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
 
-const httpClient = axios.create({
-  baseURL: BASE_URL,
-});
+const httpClient = new HttpClient(BASE_URL);
 
 export function withHttpClient() {
   return httpClient;
