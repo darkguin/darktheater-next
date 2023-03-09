@@ -17,10 +17,10 @@ function Slider({ delay = 2500, children, ...props }: PropsWithChildren<Props>) 
       slidesPerView={1}
       slidesPerGroup={1}
       spaceBetween={30}
-      navigation={true}
-      loop={true}
       autoplay={{ delay, disableOnInteraction: false }}
       pagination={{ clickable: true }}
+      navigation
+      loop
       className="slider unselectable"
       {...props}
     >

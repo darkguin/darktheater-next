@@ -10,19 +10,18 @@ import { ContentSlide } from '@shared/ui/Slider';
 import { PromoBanner } from '@/features/promo-banner';
 import { Slider } from '@/shared/ui/Slider';
 
-const PlaylistIds = [1, 3, 5];
+const PLAYLIST_IDS = [1, 3, 5];
+const PROMO_BANNER_INDEX = 1;
 
-async function fetchData() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { fetchById } = usePlaylistApi();
-  const fetchFn = (id: number) => fetchById(id);
-
-  const data = await Promise.all(PlaylistIds.map(fetchFn));
+async function fetchData(fetchFn: (id: number) => Promise<Playlist>) {
+  const data = await Promise.all(PLAYLIST_IDS.map(fetchFn));
   return data.filter(Boolean) as Playlist[];
 }
 
 export default async function Home() {
-  const playlists = await fetchData();
+  const { fetchById } = usePlaylistApi();
+
+  const playlists = await fetchData(fetchById);
 
   const { authorized } = useAuthStore.getState();
 
@@ -60,7 +59,7 @@ export default async function Home() {
             </div>
           ) : null}
 
-          {!authorized && i == 1 ? <PromoBanner /> : null}
+          {!authorized && i === PROMO_BANNER_INDEX ? <PromoBanner /> : null}
         </div>
       ))}
     </PageWrapper>

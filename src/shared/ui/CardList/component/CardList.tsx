@@ -10,9 +10,9 @@ function CardList({ children, ...props }: PropsWithChildren<SwiperProps>) {
   return (
     <Swiper
       modules={[Navigation]}
-      slidesPerView={'auto'}
+      slidesPerView="auto"
       spaceBetween={20}
-      navigation={true}
+      navigation
       className="card-list unselectable"
       {...props}
     >

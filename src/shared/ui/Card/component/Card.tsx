@@ -13,7 +13,7 @@ function Card({ title = '', width, image, children }: PropsWithChildren<Props>) 
   return (
     <div className="card__wrapper">
       <div className="card" style={{ width }}>
-        {image ? <Image src={image} alt="card" fill={true} sizes={'160px'} /> : null}
+        {image ? <Image src={image} alt="card" fill sizes="160px" /> : null}
 
         {children}
       </div>

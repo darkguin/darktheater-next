@@ -5,22 +5,20 @@ import { makeContentPath } from '@features/content';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Props = {
+interface Props {
   image?: string;
   title?: string;
   subtitle?: string;
   id: string;
   contentType: ContentType;
-};
+}
 
 function ContentSlide({ id, contentType, image = '', title = '', subtitle = '' }: Props) {
   const contentPath = makeContentPath(id, contentType);
 
   return (
     <div className="content-slide">
-      {image ? (
-        <Image className="content-slide__image" src={image} alt={title} fill={true} />
-      ) : null}
+      {image ? <Image className="content-slide__image" src={image} alt={title} fill /> : null}
 
       <div className="content-slide__content">
         <div className="content-slide__header">
