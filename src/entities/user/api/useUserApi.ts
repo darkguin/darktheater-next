@@ -8,17 +8,11 @@ export function useUserApi() {
   const $http = withHttpClient();
 
   const fetchCurrentUser = (): Promise<User> => {
-    return $http
-      .get<ApiUser>(ENDPOINTS.CURRENT_USER)
-      .then(({ data }) => data)
-      .then(UserMapper.map);
+    return $http.get<ApiUser>(ENDPOINTS.CURRENT_USER).then(UserMapper.map);
   };
 
   const updateUsername = (username: string): Promise<User> => {
-    return $http
-      .patch<ApiUser>(ENDPOINTS.CURRENT_USER, { username })
-      .then(({ data }) => data)
-      .then(UserMapper.map);
+    return $http.patch<ApiUser>(ENDPOINTS.CURRENT_USER, { username }).then(UserMapper.map);
   };
 
   return { fetchCurrentUser, updateUsername };
