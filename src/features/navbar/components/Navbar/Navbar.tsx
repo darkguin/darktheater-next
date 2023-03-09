@@ -7,7 +7,6 @@ import { Route } from '@core/values';
 import { NavbarSize } from '@features/navbar';
 import { useNavbarSize } from '@features/navbar/hooks';
 import { NavbarConfig } from '@features/navbar/values/navbar-config';
-import { useAuthStore } from '@processes/auth';
 import { FontIcon } from '@shared/ui';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -22,16 +21,16 @@ const CATEGORIES_COUNT = CATEGORIES.length - 1;
 
 interface Props {
   defaultSize?: NavbarSize;
+  authorized?: boolean;
 }
 
-function Navbar({ defaultSize }: Props) {
+function Navbar({ defaultSize, authorized = false }: Props) {
   const router = useRouter();
   const { navbarSize, setNavbarSize } = useNavbarSize(defaultSize);
 
   const [isOpen, setIsOpen] = useState(false);
 
   const isShort = navbarSize === NavbarSize.SMALL;
-  const authorized = useAuthStore((state) => state.authorized);
 
   const onItemClick = (path: string) => {
     return router.push(path);

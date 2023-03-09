@@ -24,11 +24,11 @@ $nav-bar-height: 60px;
 
   @media screen and (max-width: vars.$screen-sm) {
     grid-template-columns: 1fr;
-    grid-template-rows: $nav-bar-height 1fr;
+    grid-template-rows: 1fr;
     background: var(--dark-color);
 
     &__page {
-      margin: 0;
+      margin: $nav-bar-height 0 0 0;
       background: none;
       border-radius: 0;
     }

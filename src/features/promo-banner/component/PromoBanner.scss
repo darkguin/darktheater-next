@@ -1,0 +1,90 @@
+@use "src/styles/vars";
+@use "src/styles/fonts";
+@use "src/styles/buttons";
+
+.promo-banner {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  height: fit-content;
+
+  // V1
+  color: white;
+  background: #171717;
+
+  // V2
+  //background: hsla(335, 91%, 70%, 1);
+  //background: linear-gradient(90deg, hsla(335, 91%, 70%, 1) 0%, hsla(49, 89%, 61%, 1) 100%);
+  //background: -moz-linear-gradient(90deg, hsla(335, 91%, 70%, 1) 0%, hsla(49, 89%, 61%, 1) 100%);
+  //background: -webkit-linear-gradient(90deg, hsla(335, 91%, 70%, 1) 0%, hsla(49, 89%, 61%, 1) 100%);
+
+  margin-top: 16px;
+  border-radius: vars.$border-radius-md;
+  overflow: hidden;
+
+  &__content {
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    padding: 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  &__body {
+    white-space: pre-wrap;
+  }
+
+  &__btn {
+    margin-top: 22px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url("/images/splines/banner.svg") no-repeat right;
+    background-size: auto 100%;
+    height: 100%;
+    border: none;
+    z-index: 0;
+    
+    // V2
+    //filter: blur(5px);
+
+    @media screen and (max-width: vars.$screen-sm) {
+      filter: blur(50px);
+    }
+  }
+
+  header {
+    margin-bottom: 16px;
+  }
+
+  section {
+    max-width: 450px;
+
+    @media screen and (max-width: vars.$screen-md) {
+      max-width: 300px;
+    }
+
+    @media screen and (max-width: vars.$screen-sm) {
+      max-width: 100%;
+    }
+  }
+
+  li {
+    list-style-type: "👉";
+    padding-inline-start: 0.6ch;
+  }
+}

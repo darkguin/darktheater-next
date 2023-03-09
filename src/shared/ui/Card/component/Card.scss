@@ -1,0 +1,44 @@
+@use "src/styles/vars";
+
+.card {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+
+  justify-content: center;
+  width: 165px;
+
+  border-radius: vars.$border-radius-sm;
+  background: var(--second-color);
+  aspect-ratio: 2 / 2.8;
+  text-decoration: none;
+
+  &__wrapper {
+    width: 165px;
+  }
+
+  &__image {
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &__title {
+    padding: 8px 0 0 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--title-color);
+
+    &:hover {
+      transition: color 0.2s ease-in-out;
+      color: rgba(var(--title-color-rgb), 0.5);
+    }
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .card {
+    width: 160px;
+  }
+}

@@ -1,0 +1,53 @@
+@use "src/styles/vars";
+
+@use "node_modules/swiper/swiper";
+@use "node_modules/swiper/modules/navigation/navigation";
+
+:root {
+  --swiper-pagination-color: #{var(--contrast-color)};
+  --swiper-navigation-color: #{var(--title-color)};
+  --swiper-navigation-size: 32px;
+}
+
+:host {
+  width: 100%;
+  max-width: 100%;
+}
+
+.card-list {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+
+  .swiper-slide {
+    width: auto !important;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+  }
+
+  &:hover {
+    .swiper-button-prev, .swiper-button-next {
+      opacity: 1;
+      visibility: visible;
+      transition: all 0.4s;
+    }
+  }
+
+  .swiper-wrapper > .swiper-slide {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .slider {
+    .swiper-button-prev, .swiper-button-next {
+      display: none !important;
+    }
+  }
+}
+
+
