@@ -50,10 +50,12 @@ export class HttpClient {
   ) {
     options.method = method;
     options.body = body as BodyInit;
+
     this.addAbortController(options, new AbortController());
     this.addHeaders(options);
 
-    const data = await fetch(this.createUrl(path, options.params), options);
+    const url = this.createUrl(path, options.params);
+    const data = await fetch(url, options);
 
     if (data.ok) return (await data.json()) as Promise<T>;
     throw data as HttpError;
@@ -61,7 +63,7 @@ export class HttpClient {
 
   private createUrl(path: string, params: Record<string, unknown> = {}) {
     let paramsString = Object.entries(params)
-      .map((k, v) => (v ? `${k}=${v}` : null))
+      .map(([k, v]) => (v || v === 0 ? `${k}=${v}` : null))
       .filter(Boolean)
       .join('&');
 

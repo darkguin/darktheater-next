@@ -7,13 +7,24 @@ interface Props {
   width?: string;
   title?: string;
   image?: string;
+  imageSizes?: string;
+  imageQuality?: number;
 }
 
-function Card({ title = '', width, image, children }: PropsWithChildren<Props>) {
+function Card({
+  title = '',
+  imageSizes = '160px',
+  imageQuality = 75,
+  image,
+  width,
+  children,
+}: PropsWithChildren<Props>) {
   return (
     <div className="card__wrapper">
       <div className="card" style={{ width }}>
-        {image ? <Image src={image} alt="card" fill sizes="160px" /> : null}
+        {image ? (
+          <Image src={image} alt="card" fill priority sizes={imageSizes} quality={imageQuality} />
+        ) : null}
 
         {children}
       </div>

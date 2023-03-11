@@ -1,9 +1,14 @@
 import { Route, RoutesList } from '@core/values';
+import { CatalogMiddleware } from '@features/catalog';
 import { AuthMiddleware, UnAuthMiddleware } from '@processes/auth';
 import { Middleware, withMiddleware } from '@shared/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
-const middlewares: Middleware[] = [AuthMiddleware, UnAuthMiddleware];
+const middlewares: Middleware[] = [
+  AuthMiddleware,
+  UnAuthMiddleware,
+  CatalogMiddleware,
+];
 
 export function middleware(request: NextRequest) {
   const response = NextResponse.next();
