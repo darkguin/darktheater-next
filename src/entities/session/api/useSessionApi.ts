@@ -26,10 +26,8 @@ export function useSessionApi() {
       .then(SessionMapper.map);
   };
 
-  const refreshSession = (refresh_token: string): Promise<Session> => {
-    return $http
-      .post<ApiSession>(ENDPOINTS.REFRESH_TOKEN, { refresh_token })
-      .then(SessionMapper.map);
+  const refreshSession = (refresh_token: string): Promise<ApiSession> => {
+    return $http.post<ApiSession>(ENDPOINTS.REFRESH_TOKEN, { refresh_token });
   };
 
   const refreshSessionByNext = (): Promise<Session> => {

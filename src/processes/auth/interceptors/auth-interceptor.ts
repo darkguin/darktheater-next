@@ -7,7 +7,7 @@ import {
   HttpHeader,
   withHttpClient,
 } from '@providers/http-client';
-import { HttpClient, HttpError, HttpInterceptor } from '@shared/http-client';
+import { HttpError, HttpInterceptor } from '@shared/http-client';
 import { getServerCookies } from '@shared/server-cookie';
 import { isServer } from '@shared/utils';
 import { getCookie as getClientCookie } from 'cookies-next';
@@ -17,7 +17,6 @@ const getCookie = (key: StorageKey) => {
 };
 
 export class AuthInterceptor extends HttpInterceptor {
-  private $http: HttpClient = withHttpClient();
   private tokenUpdating = false;
 
   onRequest(request: Request): void {
@@ -37,7 +36,7 @@ export class AuthInterceptor extends HttpInterceptor {
         .refreshSessionByNext()
         .then(() => {
           this.tokenUpdating = false;
-          return this.$http.sendRequest(originalRequest);
+          return withHttpClient().sendRequest(originalRequest);
         });
     }
 

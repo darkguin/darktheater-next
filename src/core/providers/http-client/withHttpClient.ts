@@ -5,7 +5,7 @@ import { HttpClient } from '@/shared/http-client';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
 
 const interceptors = [new AuthInterceptor()];
-const httpClient = new HttpClient(BASE_URL, interceptors);
+const httpClient: HttpClient = new HttpClient(BASE_URL, interceptors);
 
 export function withHttpClient() {
   return httpClient;
