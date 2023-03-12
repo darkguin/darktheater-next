@@ -4,8 +4,10 @@ import { Playlist, PlaylistType, usePlaylistApi } from '@entities/playlist';
 import { generateMediaTag } from '@features/content';
 import { PageWrapper } from '@features/page-wrapper';
 import { useAuthStore } from '@processes/auth';
+import { setServerCookiesContext } from '@shared/server-cookie';
 import { Card, CardList } from '@shared/ui';
 import { ContentSlide } from '@shared/ui/Slider';
+import { cookies } from 'next/headers';
 
 import { PromoBanner } from '@/features/promo-banner';
 import { Slider } from '@/shared/ui/Slider';
@@ -19,8 +21,9 @@ async function fetchData(fetchFn: (id: number) => Promise<Playlist>) {
 }
 
 export default async function Home() {
-  const { fetchById } = usePlaylistApi();
+  setServerCookiesContext(cookies);
 
+  const { fetchById } = usePlaylistApi();
   const playlists = await fetchData(fetchById);
 
   const { authorized } = useAuthStore.getState();

@@ -6,6 +6,7 @@ import { default as SignInModal } from './components/modals/SignInModal';
 import { default as SignUpModal } from './components/modals/SignUpModal';
 
 export * from './hooks';
+export * from './interceptors';
 export * from './middlewares';
 export * from './stores';
 export * from './utils';

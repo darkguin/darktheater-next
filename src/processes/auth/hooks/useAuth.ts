@@ -1,5 +1,4 @@
 import { useAuthStore } from '@processes/auth';
-import { NextRequest, NextResponse } from 'next/server';
 
 import { ConfirmationType, useConfirmationApi } from '@/entities/confirmation';
 import { Credentials, useSessionApi } from '@/entities/session';
@@ -7,12 +6,12 @@ import { Credentials, useSessionApi } from '@/entities/session';
 import { useAuthTokens } from './useAuthTokens';
 import { useCurrentUser } from './useCurrentUser';
 
-export function useAuth(req?: NextRequest, res?: NextResponse) {
+export function useAuth() {
   const sessionApi = useSessionApi();
   const confirmationApi = useConfirmationApi();
 
   const { setCurrentUser } = useCurrentUser();
-  const { setRefreshToken, setAccessToken, clearTokens, getRefreshToken } = useAuthTokens(req, res);
+  const { setRefreshToken, setAccessToken, clearTokens } = useAuthTokens();
 
   const setAuthorized = (state: boolean) => {
     useAuthStore.setState({ authorized: state });
@@ -41,21 +40,12 @@ export function useAuth(req?: NextRequest, res?: NextResponse) {
     clearTokens();
     setAuthorized(false);
     setCurrentUser(null);
-    return new Promise<boolean>((resolve) => resolve(true));
-  };
-
-  const refreshSession = async (token = getRefreshToken()): Promise<boolean> => {
-    const { accessToken, refreshToken, user } = await sessionApi.refreshSession(token);
-    setAccessToken(accessToken);
-    setRefreshToken(refreshToken);
-    setAuthorized(user.isActive);
-    setCurrentUser(user);
-    return true;
+    return sessionApi.clearSessionByNext().then(() => true);
   };
 
   const sendConfirmEmail = (type: ConfirmationType, auth = false, email = ''): Promise<boolean> => {
     return confirmationApi.sendConfirmEmail(type, auth, email).then(() => true);
   };
 
-  return { useAuthStore, signIn, signUp, signOut, sendConfirmEmail, refreshSession };
+  return { useAuthStore, signIn, signUp, signOut, sendConfirmEmail };
 }
