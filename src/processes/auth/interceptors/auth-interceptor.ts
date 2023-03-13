@@ -26,9 +26,16 @@ export class AuthInterceptor extends HttpInterceptor {
   }
 
   async onResponseError(originalRequest: Request, error: HttpError<HttpErrorResponse>) {
-    const { error_code } = await error.json();
+    let errorCode = ApiErrorCodes.Base;
 
-    if (error_code === ApiErrorCodes.AccessTokenExpired && !this.tokenUpdating) {
+    try {
+      const { error_code } = await error.json();
+      errorCode = error_code;
+    } catch (e) {
+      console.error('onResponseError: ', error.status, error.statusText, originalRequest.url);
+    }
+
+    if (errorCode === ApiErrorCodes.AccessTokenExpired && !this.tokenUpdating) {
       this.tokenUpdating = true;
 
       return await withNextSessionApi()
@@ -39,7 +46,7 @@ export class AuthInterceptor extends HttpInterceptor {
         });
     }
 
-    if (error_code === ApiErrorCodes.RefreshTokenNotfound) {
+    if (errorCode === ApiErrorCodes.RefreshTokenNotfound) {
       useCurrentUserStore.setState({ currentUser: null });
       useAuthStore.setState({ authorized: false });
       await withNextSessionApi().clearSession();

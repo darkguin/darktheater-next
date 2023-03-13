@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuthStore } from '@processes/auth';
 
 import { ConfirmationType, useConfirmationApi } from '@/entities/confirmation';
@@ -13,10 +15,8 @@ export function useAuth() {
 
   const { setCurrentUser } = useCurrentUser();
   const { setRefreshToken, setAccessToken, clearTokens } = useAuthTokens();
-
-  const setAuthorized = (state: boolean) => {
-    useAuthStore.setState({ authorized: state });
-  };
+  const authorized = useAuthStore((state) => state.authorized);
+  const setAuthorized = useAuthStore((state) => state.setAuthorizedStatus);
 
   const signIn = async ({ email, password }: Credentials): Promise<boolean> => {
     const { accessToken, refreshToken, user } = await sessionApi.signIn({
@@ -48,5 +48,5 @@ export function useAuth() {
     return confirmationApi.sendConfirmEmail(type, auth, email).then(() => true);
   };
 
-  return { useAuthStore, signIn, signUp, signOut, sendConfirmEmail };
+  return { authorized, setAuthorized, signIn, signUp, signOut, sendConfirmEmail };
 }
