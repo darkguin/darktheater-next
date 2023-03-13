@@ -3,9 +3,13 @@ import './page.scss';
 import { SignInPageStrings as t } from '@core/dictionaries';
 import { Route } from '@core/values';
 import { SignInForm } from '@processes/auth';
+import { setServerCookiesContext } from '@shared/server-cookie';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 
 export default function SignInPage() {
+  setServerCookiesContext(cookies);
+  
   return (
     <section>
       <header className="auth-page__title-container">

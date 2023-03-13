@@ -4,6 +4,8 @@ import { ConfirmPageStrings as t } from '@core/dictionaries';
 import { Route } from '@core/values';
 import { ConfirmationType } from '@entities/confirmation';
 import { ConfirmResetPasswordForm } from '@processes/auth';
+import { setServerCookiesContext } from '@shared/server-cookie';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -19,6 +21,8 @@ const confirmationTypes = [
 ];
 
 export default function ConfirmPage({ searchParams }: Props) {
+  setServerCookiesContext(cookies);
+  
   const confirmationType = (searchParams?.type as ConfirmationType) ?? '';
   const token = searchParams?.token ?? '';
 
