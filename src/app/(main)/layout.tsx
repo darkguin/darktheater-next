@@ -16,7 +16,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
 
   return (
     <div className="main-layout">
-      <Navbar defaultSize={navbarSize} />
+      <Navbar defaultSize={navbarSize} authorized={authorized} />
       <main className="main-layout__page">{children}</main>
     </div>
   );

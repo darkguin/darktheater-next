@@ -18,10 +18,13 @@ export type HttpRequestOptions = {
   requestId?: RequestId;
   formData?: boolean;
   baseUrl?: string;
+  signRequest?: boolean;
 } & RequestInit;
 
-declare namespace NodeJS {
-  interface RequestInit extends globalThis.RequestInit {
+declare global {
+  // @ts-ignore
+  interface Request extends globalThis.Request {
+    signRequest?: boolean;
     requestId?: RequestId;
   }
 }

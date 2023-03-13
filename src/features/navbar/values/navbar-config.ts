@@ -25,7 +25,7 @@ export const NavbarConfig = {
       id: 2,
       name: 'General',
       items: [
-        { id: 0, title: 'Profile', routerPath: Route.Home, icon: Icons.USER, auth: 'yes' },
+        { id: 0, title: 'Profile', routerPath: Route.Profile, icon: Icons.USER, auth: 'yes' },
         { id: 1, title: 'Sign In', routerPath: Route.SignIn, icon: Icons.EXIT, auth: 'no' },
       ],
     },
