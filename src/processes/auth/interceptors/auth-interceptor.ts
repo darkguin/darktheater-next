@@ -1,6 +1,6 @@
 import { StorageKey } from '@core/values';
-import { useSessionApi } from '@entities/session';
-import { useAuth } from '@processes/auth';
+import { withNextSessionApi } from '@entities/session';
+import { useAuthStore, useCurrentUserStore } from '@processes/auth';
 import {
   ApiErrorCodes,
   HttpErrorResponse,
@@ -31,9 +31,8 @@ export class AuthInterceptor extends HttpInterceptor {
     if (error_code === ApiErrorCodes.AccessTokenExpired && !this.tokenUpdating) {
       this.tokenUpdating = true;
 
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      return await useSessionApi()
-        .refreshSessionByNext()
+      return await withNextSessionApi()
+        .refreshSession()
         .then(() => {
           this.tokenUpdating = false;
           return withHttpClient().sendRequest(originalRequest);
@@ -41,8 +40,9 @@ export class AuthInterceptor extends HttpInterceptor {
     }
 
     if (error_code === ApiErrorCodes.RefreshTokenNotfound) {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      await useAuth().signOut();
+      useCurrentUserStore.setState({ currentUser: null });
+      useAuthStore.setState({ authorized: false });
+      await withNextSessionApi().clearSession();
     }
   }
 }

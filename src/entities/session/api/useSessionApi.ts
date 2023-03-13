@@ -1,10 +1,8 @@
 import { ApiSession, Credentials, SessionMapper } from '@entities/session';
 import { withHttpClient } from '@providers/http-client';
-import { getNextApiBaseUrl } from '@shared/utils';
 
 import { Session } from '../types/session';
 import { ENDPOINTS } from '../values/endpoints';
-import { NEXT_ENDPOINTS } from '../values/next.endpoints';
 
 export function useSessionApi() {
   const $http = withHttpClient();
@@ -30,17 +28,5 @@ export function useSessionApi() {
     return $http.post<ApiSession>(ENDPOINTS.REFRESH_TOKEN, { refresh_token });
   };
 
-  const refreshSessionByNext = (): Promise<Session> => {
-    const baseUrl = getNextApiBaseUrl();
-    return $http
-      .post<ApiSession>(NEXT_ENDPOINTS.REFRESH_SESSION, null, { baseUrl })
-      .then(SessionMapper.map);
-  };
-
-  const clearSessionByNext = (): Promise<void> => {
-    const baseUrl = getNextApiBaseUrl();
-    return $http.post<void>(NEXT_ENDPOINTS.CLEAR_SESSION, null, { baseUrl });
-  };
-
-  return { signIn, signUp, refreshSession, refreshSessionByNext, clearSessionByNext };
+  return { signIn, signUp, refreshSession };
 }
