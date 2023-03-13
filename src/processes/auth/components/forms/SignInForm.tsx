@@ -6,7 +6,8 @@ import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
 import { useLoader } from '@features/loader';
 import { SignInModal, useAuth } from '@processes/auth';
-import { ApiErrorCodes, HttpError, HttpErrorResponse } from '@providers/http-client';
+import { ApiErrorCodes, HttpErrorResponse } from '@providers/http-client';
+import { HttpError } from '@shared/http-client';
 import { useModal } from '@shared/ui/ModalView';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -37,7 +38,7 @@ function SignInForm() {
       resetForm();
       await router.push(Route.Home);
     } catch (e: unknown) {
-      const response = await (e as HttpError).json();
+      const response = await (e as HttpError<HttpErrorResponse>).json();
       await onSubmitError(response, credentials.email ?? '');
     } finally {
       setLoading(false);

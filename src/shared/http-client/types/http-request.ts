@@ -1,4 +1,4 @@
-import { RequestId } from '../values/request-id';
+import { RequestId } from './request-id';
 
 export enum HttpRequestMethod {
   GET = 'GET',
@@ -17,6 +17,7 @@ export type HttpRequestOptions = {
   headers?: Record<string, string>;
   requestId?: RequestId;
   formData?: boolean;
+  baseUrl?: string;
 } & RequestInit;
 
 declare namespace NodeJS {
