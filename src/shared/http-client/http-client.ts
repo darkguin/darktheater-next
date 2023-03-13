@@ -1,3 +1,5 @@
+import { isServer } from '@shared/utils';
+
 import { HttpInterceptor, HttpInterceptorProvider } from './interceptor';
 import { RequestBuilder, withRequestBuilder } from './request-builder';
 import { HttpError } from './types';
@@ -56,7 +58,13 @@ class HttpClient extends HttpInterceptorProvider {
 
   async sendRequest<T>(request: Request) {
     await this.triggerInterceptor<void>('onRequest', request);
-    const response = await fetch(request);
+    const { url, body, method, headers, signal } = request;
+
+    // @NOTE: Fetch does not work correctly with Request on the server side.
+    // On the client side, the opposite is true.
+    // Most likely, Next has an abstraction over fetch so that it works in Node.js
+    const serverFetchOptions = { body, method, headers, signal };
+    const response = isServer() ? await fetch(url, serverFetchOptions) : await fetch(request);
 
     if (response.ok) {
       await this.triggerInterceptor<void>('onResponse', request, response);
@@ -70,6 +78,7 @@ class HttpClient extends HttpInterceptorProvider {
   }
 }
 
-interface HttpClient extends withRequestBuilder {}
+interface HttpClient extends withRequestBuilder {
+}
 
 export { HttpClient };

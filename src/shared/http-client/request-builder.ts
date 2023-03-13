@@ -16,14 +16,6 @@ export function RequestBuilder<T extends typeof HttpClient>(constructor: T) {
     return urlJoin(baseURL, path) + paramsString;
   };
 
-  const createHeaders = (init?: HeadersInit, formData = false) => {
-    const headers = new Headers(init);
-    headers.set('Accept', 'application/json, text/plain, */*');
-
-    if (!formData) headers.set('Content-Type', 'application/json');
-    return headers as Record<string, string> & Headers;
-  };
-
   const createAbortSignal = function (this: HttpClient, requestId?: RequestId) {
     if (requestId) {
       const controller = new AbortController();
@@ -42,7 +34,6 @@ export function RequestBuilder<T extends typeof HttpClient>(constructor: T) {
     ): Request {
       options.method = method;
       options.body = body;
-      options.headers = createHeaders(options.headers, options.formData);
       options.signal = createAbortSignal.call(this, options.requestId);
 
       const url = createUrl(path, options.params, options.baseUrl || this.baseURL);

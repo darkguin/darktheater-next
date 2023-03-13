@@ -13,7 +13,7 @@ import { isServer } from '@shared/utils';
 import { getCookie as getClientCookie } from 'cookies-next';
 
 const getCookie = (key: StorageKey) => {
-  return isServer() ? getServerCookies(key) : getClientCookie(key);
+  return isServer() ? getServerCookies(key)?.value : getClientCookie(key);
 };
 
 export class AuthInterceptor extends HttpInterceptor {
@@ -21,7 +21,7 @@ export class AuthInterceptor extends HttpInterceptor {
 
   onRequest(request: Request): void {
     const accessToken = getCookie(StorageKey.AccessToken);
-    if (!accessToken) return;
+    if (!accessToken || !request.signRequest) return;
     request.headers.set(HttpHeader.AUTHORIZATION, `Bearer: ${accessToken}`);
   }
 

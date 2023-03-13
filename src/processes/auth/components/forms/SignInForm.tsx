@@ -36,6 +36,7 @@ function SignInForm() {
       await signIn(credentials);
 
       resetForm();
+      await router.refresh();
       await router.push(Route.Home);
     } catch (e: unknown) {
       const response = await (e as HttpError<HttpErrorResponse>).json();
