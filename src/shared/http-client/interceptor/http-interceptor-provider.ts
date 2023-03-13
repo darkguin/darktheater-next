@@ -1,26 +1,34 @@
 import { HttpError } from '../types/http-error';
 import { HttpInterceptor } from './http-interceptor';
 
-type HttpInterceptorKey = keyof HttpInterceptor;
+type HttpInterceptorFn<T> = (req: Request, res?: Response) => Promise<T>;
 
 export class HttpInterceptorProvider {
-  private readonly _interceptors: HttpInterceptor[];
+  private readonly _interceptors: HttpInterceptor[] = [];
 
   constructor(interceptors: HttpInterceptor[] = []) {
     this._interceptors = interceptors;
   }
 
-  protected async triggerInterceptor<T = void, K extends HttpInterceptorKey = HttpInterceptorKey>(
-    method: K,
+  public registerInterceptor(interceptor: HttpInterceptor) {
+    if (this._interceptors.includes(interceptor)) {
+      throw new Error('Interceptor is already include');
+    }
+    this._interceptors.push(interceptor);
+  }
+
+  protected async triggerInterceptor<T = void>(
+    method: 'onRequest' | 'onResponse' | 'onResponseError',
     request: Request,
     response?: Response | HttpError<unknown>,
   ): Promise<T> {
     let responseErrorData: T | null = null;
 
     const execInterceptor = async (interceptor: HttpInterceptor) => {
-      const interceptorFn = interceptor[method];
-      // @ts-ignore @TODO: Figure out how to dynamically pass parameters
-      return interceptorFn ? ((await interceptorFn(request, response)) as Promise<T>) : null;
+      return await new Promise<T>((resolve) => {
+        const interceptorFn = interceptor[method] as HttpInterceptorFn<T>;
+        return resolve(interceptorFn?.(request, response) || null);
+      });
     };
 
     for (const interceptor of this._interceptors) {
