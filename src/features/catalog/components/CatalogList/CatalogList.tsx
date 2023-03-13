@@ -12,19 +12,19 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 interface Props {
   type: CatalogType;
   offset?: number;
-  startPage?: number;
-  startItems: Movie[] | Serial[];
+  initPage?: number;
+  initItems: Movie[] | Serial[];
 }
 
-function CatalogList({ type, startItems, startPage = 1, offset = 25 }: Props) {
+function CatalogList({ type, initItems, initPage = 1, offset = 25 }: Props) {
   const isSerialsCatalog = type === CatalogType.Serials;
 
   const { fetchAll: fetchMovies } = useMovieApi();
   const { fetchAll: fetchSerials } = useSerialApi();
 
-  const [items, setItems] = useState<Movie[] | Serial[]>(startItems);
+  const [items, setItems] = useState<Movie[] | Serial[]>(initItems);
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState<number>(startPage);
+  const [page, setPage] = useState<number>(initPage);
   const [isFirstRender, setIsFirstRender] = useState(true);
 
   useEffect(() => {
@@ -34,10 +34,10 @@ function CatalogList({ type, startItems, startPage = 1, offset = 25 }: Props) {
   const resetCatalog = async () => {
     setPage(1);
     setItems([]);
-    await fetchMoreItemsFn();
+    await fetchMoreItems();
   };
 
-  const fetchMoreItemsFn = async () => {
+  const fetchMoreItems = async () => {
     const fetchedItems = isSerialsCatalog
       ? await fetchSerials(page, offset)
       : await fetchMovies(page, offset);
@@ -49,7 +49,7 @@ function CatalogList({ type, startItems, startPage = 1, offset = 25 }: Props) {
 
   return (
     <InfiniteScroll
-      next={fetchMoreItemsFn}
+      next={fetchMoreItems}
       hasMore={hasMore}
       loader={<CatalogListLoader />}
       dataLength={items.length}

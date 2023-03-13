@@ -26,7 +26,7 @@ export default async function Catalog({ searchParams }: Props) {
   return (
     <PageWrapper sidebar={<div></div>}>
       <CatalogTabs activeType={currentType} />
-      <CatalogList type={currentType} startItems={items} startPage={PAGE + 1} offset={OFFSET} />
+      <CatalogList type={currentType} initItems={items} initPage={PAGE + 1} offset={OFFSET} />
     </PageWrapper>
   );
 }
