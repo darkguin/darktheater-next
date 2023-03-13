@@ -6,7 +6,7 @@ import { ENDPOINTS } from '../values/endpoints';
 export function useMovieApi() {
   const $http = withHttpClient();
 
-  const fetchAll = (page = 1, size = 10): Promise<Movie[]> => {
+  const fetchAll = (page = 1, size = 25): Promise<Movie[]> => {
     return $http
       .get<ApiMovie[]>(ENDPOINTS.MOVIES, { params: { page, size } })
       .then(MovieMapper.mapMany);

@@ -3,11 +3,12 @@ import './Skeleton.scss';
 import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 
-interface Props {
+export interface SkeletonProps {
   animated?: boolean;
   width?: string;
   height?: string;
   borderRadius?: string;
+  className?: string;
 }
 
 function Skeleton({
@@ -15,12 +16,13 @@ function Skeleton({
   width = '100%',
   height = '100%',
   borderRadius = '12px',
+  className,
   children,
-}: PropsWithChildren<Props>) {
+}: PropsWithChildren<SkeletonProps>) {
   const style = { width, height, borderRadius };
 
   return (
-    <div className={clsx('skeleton', animated && 'skeleton--animated')} style={style}>
+    <div className={clsx('skeleton', animated && 'skeleton--animated', className)} style={style}>
       {children}
     </div>
   );

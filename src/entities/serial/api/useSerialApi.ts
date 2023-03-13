@@ -6,7 +6,7 @@ import { ENDPOINTS } from '../values/endpoints';
 export function useSerialApi() {
   const $http = withHttpClient();
 
-  const fetchAll = (page = 1, size = 10): Promise<Serial[]> => {
+  const fetchAll = (page = 1, size = 25): Promise<Serial[]> => {
     return $http
       .get<ApiSerial[]>(ENDPOINTS.SERIALS, { params: { page, size } })
       .then(SerialMapper.mapMany);

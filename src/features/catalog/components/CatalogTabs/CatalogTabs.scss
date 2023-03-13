@@ -1,0 +1,34 @@
+@use "src/styles/vars";
+
+.catalog-tabs {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+
+  &__tab {
+    padding-bottom: 4px;
+    cursor: pointer;
+    transition: all 400ms;
+    border-bottom: 2px solid transparent;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: var(--title-color);
+
+    &.active {
+      transition: all 400ms;
+      color: var(--contrast-color);
+      border-bottom: 2px solid var(--contrast-color);
+    }
+
+    @media screen and (min-width: vars.$screen-sm) {
+      &:not(.active):hover {
+        transition: all 400ms;
+        color: var(--descriptions-color);
+        border-bottom: 2px solid var(--descriptions-color);
+      }
+    }
+  }
+}

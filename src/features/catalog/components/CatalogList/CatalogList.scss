@@ -1,0 +1,45 @@
+@use 'src/styles/vars';
+
+.catalog-list {
+  display: grid;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  column-gap: 24px;
+  row-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  overflow-y: scroll;
+  overflow-x: hidden !important;
+
+  .card {
+    width: 100%;
+
+    &__wrapper {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .catalog-list {
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    column-gap: 14px;
+    row-gap: 14px;
+    padding-right: 12px;
+
+    .card {
+      &__title {
+        font-size: 0.75em;
+      }
+    }
+  }
+}
+
+.infinite-scroll-component__outerdiv {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
