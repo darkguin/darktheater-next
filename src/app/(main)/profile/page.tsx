@@ -10,11 +10,8 @@ import { redirect } from 'next/navigation';
 export default async function Profile() {
   setServerCookiesContext(cookies);
 
-  const { fetchCurrentUser } = useCurrentUser();
-
-  await fetchCurrentUser().catch(() => {
-    redirect(Route.SignIn);
-  });
+  const { currentUser, fetchCurrentUser } = useCurrentUser();
+  await fetchCurrentUser().catch(() => redirect(Route.SignIn));
 
   return <PageWrapper>Profile Page</PageWrapper>;
 }
