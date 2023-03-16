@@ -1,5 +1,6 @@
 import { ApiSession } from '@entities/session';
-import { ImplementsStatic, Mapper } from '@providers/http-client';
+
+import { ImplementsStatic, Mapper } from '@/core';
 
 import { UserMapper } from '../../user';
 import { Session } from '../types/session';

@@ -25,4 +25,7 @@ export interface Middleware {
   handler: MiddlewareFn;
 }
 
-export type MiddlewareFn = (req: NextRequest, res: NextResponse) => NextResponse | void;
+export type MiddlewareFn = (
+  req: NextRequest,
+  res: NextResponse,
+) => Promise<NextResponse> | Promise<NextResponse | void> | Promise<void> | NextResponse | void;

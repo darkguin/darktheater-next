@@ -1,6 +1,7 @@
 import { MediaMapper } from '@entities/media';
 import { ApiPlaylist, Playlist } from '@entities/playlist';
-import { ImplementsStatic, Mapper } from '@providers/http-client';
+
+import { ImplementsStatic, Mapper } from '@/core';
 
 @ImplementsStatic<Mapper<ApiPlaylist, Playlist>>()
 export class PlaylistMapper {

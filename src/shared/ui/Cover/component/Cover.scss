@@ -1,0 +1,23 @@
+@use "src/styles/vars";
+@use "src/styles/mixins";
+
+.cover {
+  @include mixins.aspect-ratio(6, 1);
+
+  width: 100%;
+  border-radius: vars.$border-radius-md;
+  overflow: hidden;
+  background: var(--contrast-color);
+  background-size: cover;
+  background-position: 50% 60%;
+
+  @media screen and (max-width: vars.$screen-md) {
+    @include mixins.aspect-ratio(4, 1);
+    border-radius: vars.$border-radius-sm;
+  }
+
+  @media screen and (max-width: vars.$screen-sm) {
+    @include mixins.aspect-ratio(2.5, 1);
+    border-radius: vars.$border-radius-sm;
+  }
+}

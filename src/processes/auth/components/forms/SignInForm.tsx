@@ -6,11 +6,12 @@ import { Credentials } from '@entities/session';
 import { AuthForm, AuthFormType } from '@features/auth';
 import { useLoader } from '@features/loader';
 import { SignInModal, useAuth } from '@processes/auth';
-import { ApiErrorCodes, HttpErrorResponse } from '@providers/http-client';
-import { HttpError } from '@shared/http-client';
+import { FetcherError } from '@shared/fetcher';
 import { useModal } from '@shared/ui/ModalView';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import { ApiErrorCodes, HttpErrorResponse } from '@/core';
 
 function SignInForm() {
   const router = useRouter();
@@ -39,7 +40,7 @@ function SignInForm() {
       await router.refresh();
       await router.push(Route.Home);
     } catch (e: unknown) {
-      const response = await (e as HttpError<HttpErrorResponse>).json();
+      const response = await (e as FetcherError).json();
       await onSubmitError(response, credentials.email ?? '');
     } finally {
       setLoading(false);

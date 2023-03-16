@@ -1,6 +1,7 @@
 import { MediaMapper } from '@entities/media';
 import { ApiEpisode, Episode } from '@entities/serial';
-import { ImplementsStatic, Mapper } from '@providers/http-client';
+
+import { ImplementsStatic, Mapper } from '@/core';
 
 @ImplementsStatic<Mapper<ApiEpisode, Episode>>()
 export class EpisodeMapper {

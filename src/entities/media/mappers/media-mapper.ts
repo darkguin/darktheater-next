@@ -1,5 +1,6 @@
 import { Actor, ApiMedia, ContentType, Country, Director, Genre, Media } from '@entities/media';
-import { ImplementsStatic, Mapper } from '@providers/http-client';
+
+import { ImplementsStatic, Mapper } from '@/core';
 
 @ImplementsStatic<Mapper<ApiMedia, Media>>()
 export class MediaMapper {

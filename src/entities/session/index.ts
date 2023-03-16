@@ -1,5 +1,4 @@
 export * from './api/useSessionApi';
-export * from './api/withNextSessionApi';
 export * from './mappers/session-mapper';
 export * from './types/api-session';
 export * from './types/credentials';
