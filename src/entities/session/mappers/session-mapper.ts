@@ -15,7 +15,7 @@ export class SessionMapper {
     return {
       accessToken: access_token,
       refreshToken: refresh_token,
-      user: UserMapper.map(user),
+      user: user ? UserMapper.map(user) : user,
     };
   }
 }

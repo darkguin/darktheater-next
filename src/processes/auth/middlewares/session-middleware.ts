@@ -24,14 +24,17 @@ export const SessionMiddleware = defineMiddleware({
     if (isValid) return;
 
     try {
+      console.log('INFO: Start refresh tokens');
       const { refreshSession } = sessionApi();
       const session = await refreshSession(refreshToken);
+      console.log('INFO: End refresh tokens', session);
 
       const response = NextResponse.redirect(new URL(req.url));
       response.cookies.set(StorageKey.AccessToken, session.accessToken);
       response.cookies.set(StorageKey.RefreshToken, session.refreshToken);
       return response;
     } catch (e) {
+      console.log('Error: Error during token refresh', e);
       const response = NextResponse.redirect(new URL(Route.SignIn, req.url));
       response.cookies.delete(StorageKey.AccessToken);
       response.cookies.delete(StorageKey.RefreshToken);
