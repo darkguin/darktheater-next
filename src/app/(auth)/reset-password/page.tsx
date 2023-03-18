@@ -3,13 +3,9 @@ import './page.scss';
 import { ResetPasswordPageStrings as t } from '@core/dictionaries';
 import { Route } from '@core/values';
 import { ResetPasswordForm } from '@processes/auth';
-import { setServerCookiesContext } from '@shared/server-cookie';
-import { cookies } from 'next/headers';
 import Link from 'next/link';
 
 export default function ResetPasswordPage() {
-  setServerCookiesContext(cookies);
-  
   return (
     <section>
       <header className="auth-page__title-container">

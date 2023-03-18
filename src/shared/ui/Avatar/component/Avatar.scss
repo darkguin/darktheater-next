@@ -1,0 +1,33 @@
+@use "src/styles/vars";
+@use "src/styles/fonts";
+
+.avatar {
+  @include fonts.font-bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--second-color);
+  color: var(--light-color);
+  line-height: 0;
+  margin: -0.5px;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &.avatar--circle {
+    border-radius: 50%;
+  }
+
+  &.avatar--square {
+    border-radius: 0;
+  }
+
+  &.avatar--rounded {
+    border-radius: vars.$border-radius-md;
+  }
+}

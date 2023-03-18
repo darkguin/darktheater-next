@@ -1,4 +1,4 @@
-import { ApiErrorCodes } from '@providers/http-client';
+import { ApiErrorCodes } from '@/core';
 
 export interface HttpErrorResponse {
   detail: string;

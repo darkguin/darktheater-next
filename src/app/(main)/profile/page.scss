@@ -1,3 +1,98 @@
 @use "src/styles/vars";
 @use "src/styles/fonts";
-@use "src/styles/buttons";
+@use "src/styles/mixins";
+@use "src/styles/badge";
+
+
+.profile {
+  position: relative;
+  width: 100%;
+
+  &__header {
+    position: relative;
+    width: 100%;
+    padding-left: 250px;
+
+    @media screen and (max-width: vars.$screen-md) {
+      padding-left: 150px;
+    }
+
+    @media screen and (max-width: vars.$screen-sm) {
+      padding-left: 0;
+      padding-top: 50px;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    top: -75px;
+    left: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--second-color);
+    border: 6px solid var(--dark-color);
+    overflow: hidden;
+
+    @media screen and (max-width: vars.$screen-md) {
+      top: -50px;
+      left: 25px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  &__information {
+    padding: 18px 18px 18px 0;
+
+    &-title {
+      margin-bottom: 8px;
+      color: var(--title-color);
+    }
+
+    &-subtitle {
+      margin-bottom: 8px;
+      color: var(--descriptions-color);
+    }
+  }
+
+  &__container {
+    margin-top: 8px;
+    border-top: 3px solid var(--border-color);
+    border-radius: 3px;
+  }
+
+  &__btn {
+    &-group {
+      position: absolute;
+      top: 24px;
+      right: 12px;
+    }
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--btn-light-color);
+    color: var(--title-color);
+    transition: all 0.4s;
+
+    &:hover, &:active {
+      background: var(--contrast-color);
+      color: var(--dark-color);
+      opacity: 1;
+      transition: all 0.4s;
+    }
+
+    &.logout {
+      color: vars.$danger-color;
+
+      &:hover, &:active {
+        color: var(--dark-color);
+      }
+    }
+  }
+}

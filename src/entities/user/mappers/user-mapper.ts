@@ -1,5 +1,6 @@
 import { ApiUser, UserRoles } from '@entities/user';
-import { ImplementsStatic, Mapper } from '@providers/http-client';
+
+import { ImplementsStatic, Mapper } from '@/core';
 
 import { User } from '../types/user';
 

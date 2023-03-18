@@ -4,8 +4,6 @@ import { useMovieApi } from '@entities/movie';
 import { useSerialApi } from '@entities/serial';
 import { CatalogList, CatalogTabs, CatalogType } from '@features/catalog';
 import { PageWrapper } from '@features/page-wrapper';
-import { setServerCookiesContext } from '@shared/server-cookie';
-import { cookies } from 'next/headers';
 
 interface Props {
   searchParams?: Record<string, string>;
@@ -15,8 +13,6 @@ const PAGE = 1;
 const OFFSET = 35;
 
 export default async function Catalog({ searchParams }: Props) {
-  setServerCookiesContext(cookies);
-
   const currentType = (searchParams?.type as CatalogType) ?? CatalogType.Movies;
   const isSerialsCatalog = currentType === CatalogType.Serials;
 

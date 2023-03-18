@@ -1,20 +1,20 @@
+import { API_BASE_URL } from '@core/values';
 import { ApiSerial, Serial, SerialMapper } from '@entities/serial';
-import { withHttpClient } from '@providers/http-client';
+import { createFetcherUrl, fetcher } from '@shared/fetcher';
 
 import { ENDPOINTS } from '../values/endpoints';
 
 export function useSerialApi() {
-  const $http = withHttpClient();
-
   const fetchAll = (page = 1, size = 25): Promise<Serial[]> => {
-    return $http
-      .get<ApiSerial[]>(ENDPOINTS.SERIALS, { params: { page, size } })
-      .then(SerialMapper.mapMany);
+    const url = createFetcherUrl([API_BASE_URL, ENDPOINTS.SERIALS], { page, size });
+    return fetcher<ApiSerial[]>('get', url).then(SerialMapper.mapMany);
   };
 
   const fetchById = (id: number | string): Promise<Serial> => {
     const path = ENDPOINTS.SERIALS_ID.replace(':id', id.toString());
-    return $http.get<ApiSerial>(path).then(SerialMapper.map);
+    const url = createFetcherUrl([API_BASE_URL, path]);
+
+    return fetcher<ApiSerial>('get', url).then(SerialMapper.map);
   };
 
   return { fetchAll, fetchById };

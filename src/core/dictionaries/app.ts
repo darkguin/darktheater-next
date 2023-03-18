@@ -3,4 +3,5 @@ export const AppStrings = {
   name: 'darktheater',
   shortName: 'dth',
   logo: '/images/logo.svg',
+  cover: '/images/profile-cover.jpg',
 };

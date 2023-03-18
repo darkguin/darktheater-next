@@ -3,7 +3,7 @@
 import { useAuthStore } from '@processes/auth';
 
 import { ConfirmationType, useConfirmationApi } from '@/entities/confirmation';
-import { Credentials, useSessionApi, withNextSessionApi } from '@/entities/session';
+import { Credentials, useSessionApi } from '@/entities/session';
 
 import { useAuthTokens } from './useAuthTokens';
 import { useCurrentUser } from './useCurrentUser';
@@ -11,7 +11,6 @@ import { useCurrentUser } from './useCurrentUser';
 export function useAuth() {
   const sessionApi = useSessionApi();
   const confirmationApi = useConfirmationApi();
-  const nextApi = withNextSessionApi();
 
   const { setCurrentUser } = useCurrentUser();
   const { setRefreshToken, setAccessToken, clearTokens } = useAuthTokens();
@@ -37,11 +36,10 @@ export function useAuth() {
     return sessionApi.signUp({ email, username, password }).then(() => true);
   };
 
-  const signOut = async (): Promise<boolean> => {
+  const signOut = async () => {
     clearTokens();
     setAuthorized(false);
     setCurrentUser(null);
-    return nextApi.clearSession().then(() => true);
   };
 
   const sendConfirmEmail = (type: ConfirmationType, auth = false, email = ''): Promise<boolean> => {

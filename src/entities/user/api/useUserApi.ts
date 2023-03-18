@@ -1,20 +1,37 @@
+import { getApiUrl as url } from '@core/utils';
+import { StorageKey } from '@core/values';
 import { ApiUser, UserMapper } from '@entities/user';
-import { withHttpClient } from '@providers/http-client';
+import { createFetcherHeaders, fetcher } from '@shared/fetcher';
+import { isServer } from '@shared/utils';
+import { getCookie } from 'cookies-next';
+import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies';
+import { ReadonlyRequestCookies } from 'next/dist/server/app-render';
 
 import { User } from '../types/user';
 import { ENDPOINTS } from '../values/endpoints';
 
-export function useUserApi() {
-  const $http = withHttpClient();
+export function useUserApi(cookies?: () => RequestCookies | ReadonlyRequestCookies) {
+  const accessToken = isServer()
+    ? cookies?.().get(StorageKey.AccessToken)?.value ?? ''
+    : (getCookie(StorageKey.AccessToken) as string) ?? '';
 
   const fetchCurrentUser = (): Promise<User> => {
-    return $http.get<ApiUser>(ENDPOINTS.CURRENT_USER, { signRequest: true }).then(UserMapper.map);
+    const options: RequestInit = {
+      headers: createFetcherHeaders({ Authorization: `Bearer ${accessToken}` }),
+      cache: 'no-store',
+    };
+
+    return fetcher<ApiUser>('get', url(ENDPOINTS.CURRENT_USER), options).then(UserMapper.map);
   };
 
   const updateUsername = (username: string): Promise<User> => {
-    return $http
-      .patch<ApiUser>(ENDPOINTS.CURRENT_USER, { username }, { signRequest: true })
-      .then(UserMapper.map);
+    const options: RequestInit = {
+      headers: createFetcherHeaders({ Authorization: `Bearer ${accessToken}` }),
+      body: JSON.stringify({ username }),
+      cache: 'no-store',
+    };
+
+    return fetcher<ApiUser>('get', url(ENDPOINTS.CURRENT_USER), options).then(UserMapper.map);
   };
 
   return { fetchCurrentUser, updateUsername };
