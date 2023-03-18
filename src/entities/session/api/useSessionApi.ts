@@ -23,10 +23,14 @@ export function useSessionApi() {
   };
 
   const refreshSession = (refresh_token: string): Promise<Session> => {
-    return fetcher<ApiSession>('post', url(ENDPOINTS.REFRESH_TOKEN), {
+    const options: RequestInit = {
       headers,
       body: JSON.stringify({ refresh_token }),
-    }).then(SessionMapper.map);
+    };
+
+    return fetcher<ApiSession>('post', url(ENDPOINTS.REFRESH_TOKEN), options).then(
+      SessionMapper.map,
+    );
   };
 
   return { signIn, signUp, refreshSession };

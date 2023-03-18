@@ -16,16 +16,20 @@ export function useUserApi(cookies?: () => RequestCookies | ReadonlyRequestCooki
     : (getCookie(StorageKey.AccessToken) as string) ?? '';
 
   const fetchCurrentUser = (): Promise<User> => {
-    const headers = createFetcherHeaders({ Authorization: `Bearer ${accessToken}` });
-    const options = { headers, cache: 'no-store' as RequestCache };
+    const options: RequestInit = {
+      headers: createFetcherHeaders({ Authorization: `Bearer ${accessToken}` }),
+      cache: 'no-store',
+    };
 
     return fetcher<ApiUser>('get', url(ENDPOINTS.CURRENT_USER), options).then(UserMapper.map);
   };
 
   const updateUsername = (username: string): Promise<User> => {
-    const headers = createFetcherHeaders({ Authorization: `Bearer ${accessToken}` });
-    const body = JSON.stringify({ username });
-    const options = { body, headers, cache: 'no-store' as RequestCache };
+    const options: RequestInit = {
+      headers: createFetcherHeaders({ Authorization: `Bearer ${accessToken}` }),
+      body: JSON.stringify({ username }),
+      cache: 'no-store',
+    };
 
     return fetcher<ApiUser>('get', url(ENDPOINTS.CURRENT_USER), options).then(UserMapper.map);
   };
