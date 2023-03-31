@@ -1,0 +1,22 @@
+@use "src/styles/vars";
+
+.season-selector {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
+.season-card {
+  padding: 6px 12px;
+  border-radius: calc(#{vars.$border-radius-sm} / 1.5);
+  border: 2px solid transparent;
+  background: var(--second-color);
+  transition: all 0.4s;
+  cursor: pointer;
+
+  &.season-card--selected {
+    border: 2px solid var(--contrast-color);
+    transition: all 0.4s;
+  }
+}

@@ -12,10 +12,11 @@
   border-radius: vars.$border-radius-sm;
   background: var(--second-color);
   aspect-ratio: 2 / 2.8;
-  text-decoration: none;
 
   &__wrapper {
+    display: block;
     width: 165px;
+    text-decoration: none;
   }
 
   &__image {
@@ -29,7 +30,7 @@
     cursor: pointer;
     text-decoration: none;
     color: var(--title-color);
-
+    
     &:hover {
       transition: color 0.2s ease-in-out;
       color: rgba(var(--title-color-rgb), 0.5);

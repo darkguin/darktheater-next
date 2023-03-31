@@ -1,7 +1,7 @@
 import './page.scss';
 
 import { Playlist, PlaylistType, usePlaylistApi } from '@entities/playlist';
-import { generateMediaTag } from '@features/content';
+import { generateMediaTag, makeContentPath } from '@features/content';
 import { PageWrapper } from '@features/page-wrapper';
 import { useAuthStore } from '@processes/auth';
 import { Card, CardList } from '@shared/ui';
@@ -52,6 +52,7 @@ export default async function Home() {
                     key={`playlist-${id}-card-${item.id}`}
                     title={item.title}
                     image={item.poster}
+                    href={makeContentPath(item.id, item.contentType)}
                   />
                 ))}
               </CardList>

@@ -1,0 +1,42 @@
+@use "src/styles/vars";
+
+.episode-card {
+  width: 165px;
+  cursor: pointer;
+
+  &__image {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    width: 165px;
+    border-radius: calc(#{vars.$border-radius-sm} / 1.5);
+    border: 2px solid transparent;
+    background: var(--second-color);
+    aspect-ratio: 2.8 / 1.6;
+    transition: all 0.4s;
+  }
+
+  &.episode-card--selected {
+    .episode-card__image {
+      border: 2px solid var(--contrast-color);
+      transition: all 0.4s;
+    }
+  }
+
+
+  &__title {
+    color: var(--title-color);
+    margin-top: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    line-clamp: 2;
+    box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
