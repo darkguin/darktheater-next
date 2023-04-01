@@ -26,6 +26,12 @@
 
 .player-container {
   grid-area: player;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .drk-vi-player {
+    height: auto;
+  }
 }
 
 .info-container {
