@@ -1,0 +1,66 @@
+@use "src/styles/vars";
+@use "src/styles/fonts";
+@use "src/styles/colors";
+
+.content-description {
+  height: 100%;
+
+  &__title {
+    padding: 0 0 10px 0;
+  }
+
+  &__poster {
+    position: relative;
+    min-width: 170px;
+    max-width: 250px;
+    aspect-ratio: 2 / 2.8;
+    overflow: hidden;
+    border-radius: vars.$border-radius-sm;
+
+    &-img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    min-width: 280px;
+  }
+
+  &__tag {
+    padding-bottom: 20px;
+  }
+
+  &__group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    padding-top: 20px;
+    color: var(--descriptions-color);
+  }
+
+  &__row {
+    padding-bottom: 10px;
+  }
+
+  &__description {
+    width: 100%;
+    color: var(--descriptions-color);
+  }
+}
+
+@media screen and (max-width: vars.$screen-sm) {
+  .content-description {
+    &__title {
+      font-size: 160%;
+    }
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+}

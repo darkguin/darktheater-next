@@ -5,6 +5,7 @@ import './CatalogList.scss';
 import { Movie, useMovieApi } from '@entities/movie';
 import { Serial, useSerialApi } from '@entities/serial';
 import { CatalogListLoader, CatalogType } from '@features/catalog';
+import { makeContentPath } from '@features/content';
 import { Card } from '@shared/ui';
 import { memo, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -58,7 +59,13 @@ function CatalogList({ type, initItems, initPage = 1, offset = 25 }: Props) {
       height="100%"
     >
       {items.map((item) => (
-        <Card key={`card-${item.id}`} title={item.title} image={item.poster} imageQuality={25} />
+        <Card
+          key={`card-${item.id}`}
+          title={item.title}
+          image={item.poster}
+          imageQuality={25}
+          href={makeContentPath(item.id, item.contentType)}
+        />
       ))}
     </InfiniteScroll>
   );

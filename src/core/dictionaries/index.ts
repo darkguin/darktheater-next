@@ -1,5 +1,6 @@
 export * from './app';
 export * from './pages/confirm';
+export * from './pages/content';
 export * from './pages/reset-password';
 export * from './pages/sign-in';
 export * from './pages/sign-up';

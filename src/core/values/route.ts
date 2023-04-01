@@ -6,8 +6,8 @@ export enum Route {
   Confirmation = '/confirm',
   Catalog = '/catalog',
   Profile = '/profile',
-  Movie = '/movie/:id',
-  Serial = '/serial/:id',
+  Movie = '/movies/:id',
+  Serial = '/serials/:id',
 }
 
 export const RoutesList = Object.values(Route);

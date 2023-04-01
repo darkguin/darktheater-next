@@ -3,12 +3,15 @@ import './Card.scss';
 import Image from 'next/image';
 import { PropsWithChildren } from 'react';
 
+import CardWrapper from '../CardWrapper';
+
 interface Props {
   width?: string;
   title?: string;
   image?: string;
   imageSizes?: string;
   imageQuality?: number;
+  href?: string;
 }
 
 function Card({
@@ -17,10 +20,11 @@ function Card({
   imageQuality = 75,
   image,
   width,
+  href,
   children,
 }: PropsWithChildren<Props>) {
   return (
-    <div className="card__wrapper">
+    <CardWrapper href={href} className="card__wrapper">
       <div className="card" style={{ width }}>
         {image ? (
           <Image src={image} alt="card" fill priority sizes={imageSizes} quality={imageQuality} />
@@ -30,7 +34,7 @@ function Card({
       </div>
 
       <div className="card__title title-light-0_5">{title}</div>
-    </div>
+    </CardWrapper>
   );
 }
 

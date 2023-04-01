@@ -18,6 +18,7 @@ const nextConfig = {
   images: {
     domains: ['viasat-small.cdnvideo.ru'],
   },
+  crossOrigin: 'anonymous',
 };
 
 module.exports = withPWA(nextConfig);
