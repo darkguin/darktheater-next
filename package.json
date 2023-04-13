@@ -29,12 +29,12 @@
     "react-modal": "^3.16.1",
     "react-query": "^3.39.3",
     "server-only": "^0.0.1",
-    "sharp": "^0.31.3",
+    "sharp": "^0.32.0",
     "sonner": "^0.1.1",
     "swiper": "^9.1.0",
     "url-join": "^5.0.0",
-    "yup": "^1.0.1",
-    "zustand": "^4.3.3"
+    "yup": "^1.0.2",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@types/node": "^18.14.1",

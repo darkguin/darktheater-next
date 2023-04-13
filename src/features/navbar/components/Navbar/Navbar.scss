@@ -38,7 +38,6 @@
       font-size: 0;
       height: 0;
       opacity: 0;
-      transition: font-size 100ms, opacity 150ms, height 100ms;
       visibility: hidden;
     }
   }
@@ -88,7 +87,6 @@
     &-title {
       display: inline;
       margin-left: 15px;
-      transition: all 300ms;
       white-space: nowrap;
     }
 
@@ -102,14 +100,13 @@
   }
 }
 
-// Узкий навигационный бар только на декстопе
+
 $min-screen-width: calc(#{vars.$screen-sm} + 1px);
 
 @media screen and (min-width: $min-screen-width) {
   .nav-bar.nav-bar--short {
     align-items: center;
     padding: 28px 0;
-    transition: all 300ms;
     width: 70px;
 
     .nav-bar__item {
@@ -121,13 +118,11 @@ $min-screen-width: calc(#{vars.$screen-sm} + 1px);
 
     .nav-bar__category-title {
       opacity: 0;
-      transition: all 100ms;
     }
 
     .nav-bar__item-title {
       font-size: 0;
       opacity: 0;
-      transition: font-size 0ms, opacity 300ms;
       width: 0;
     }
   }
@@ -142,7 +137,7 @@ $min-screen-width: calc(#{vars.$screen-sm} + 1px);
     max-height: 92vh;
     padding: 8px 16px;
     position: fixed;
-    transition: all 0s;
+    transition: none;
     width: 100vw;
     z-index: 1000;
 

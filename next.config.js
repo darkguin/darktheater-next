@@ -17,6 +17,7 @@ const nextConfig = {
   },
   images: {
     domains: ['viasat-small.cdnvideo.ru'],
+    unoptimized: true,
   },
   crossOrigin: 'anonymous',
 };

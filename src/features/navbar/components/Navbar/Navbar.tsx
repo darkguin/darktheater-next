@@ -35,7 +35,8 @@ function Navbar({ defaultSize, authorized = false }: Props) {
   const isAuth = authorized || useAuthStore.getState().authorized;
 
   const onItemClick = (path: string) => {
-    return router.push(path);
+    setIsOpen(false);
+    router.push(path);
   };
 
   const isShowItem = (auth: string) => {

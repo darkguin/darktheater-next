@@ -16,10 +16,9 @@
   height: 100%;
 
   &__container {
-    aspect-ratio: 16 / 9;
-    width: clamp(800px, 80%, 1440px);
-    height: clamp(500px, 70%, 720px);
-    padding: 60px 80px;
+    width: clamp(800px, 80%, 1024px);
+    height: fit-content;
+    padding: 45px 60px;
     border-radius: vars.$border-radius-lg;
     box-shadow: 0 0 32px var(--dark-color);
     color: var(--light-color);

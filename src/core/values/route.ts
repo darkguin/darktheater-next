@@ -6,6 +6,7 @@ export enum Route {
   Confirmation = '/confirm',
   Catalog = '/catalog',
   Profile = '/profile',
+  Collections = '/collections',
   Movie = '/movies/:id',
   Serial = '/serials/:id',
 }
