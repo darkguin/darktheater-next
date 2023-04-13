@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@darkvi/core": "^0.3.1",
-    "@darkvi/hls": "^0.3.1",
-    "@darkvi/react-ui": "^0.3.1",
+    "@darkvi/core": "^0.3.2",
+    "@darkvi/hls": "^0.3.2",
+    "@darkvi/react-ui": "^0.3.2",
     "@ducanh2912/next-pwa": "^8.0.0",
     "@hookform/resolvers": "^2.9.11",
     "@vercel/analytics": "^0.1.11",
