@@ -1,9 +1,9 @@
 import './page.scss';
 
 import { Playlist, PlaylistType, usePlaylistApi } from '@entities/playlist';
+import { WithoutAuth } from '@features/auth';
 import { generateMediaTag, makeContentPath } from '@features/content';
 import { PageWrapper } from '@features/page-wrapper';
-import { useAuthStore } from '@processes/auth';
 import { Card, CardList } from '@shared/ui';
 import { ContentSlide } from '@shared/ui/Slider';
 
@@ -13,16 +13,18 @@ import { Slider } from '@/shared/ui/Slider';
 const PLAYLIST_IDS = [1, 3, 5];
 const PROMO_BANNER_INDEX = 1;
 
-async function fetchData(fetchFn: (id: number) => Promise<Playlist>) {
-  const data = await Promise.all(PLAYLIST_IDS.map(fetchFn));
+async function fetchData(fetchFn: (id: number) => Promise<Playlist | null>) {
+  const data = await Promise.all(PLAYLIST_IDS.map(fetchFn)).catch(() => []);
   return data.filter(Boolean) as Playlist[];
 }
 
 export default async function Home() {
   const { fetchById } = usePlaylistApi();
-  const playlists = await fetchData(fetchById);
 
-  const { authorized } = useAuthStore.getState();
+  // @NOTE: If for some reason the playlist doesn't fetch, just ignore it
+  const fetchCallback = (id: number) => fetchById(id).catch(() => null);
+
+  const playlists = await fetchData(fetchCallback);
 
   return (
     <PageWrapper sidebar={<div></div>}>
@@ -59,7 +61,11 @@ export default async function Home() {
             </div>
           ) : null}
 
-          {!authorized && i === PROMO_BANNER_INDEX ? <PromoBanner /> : null}
+          {i === PROMO_BANNER_INDEX ? (
+            <WithoutAuth>
+              <PromoBanner />
+            </WithoutAuth>
+          ) : null}
         </div>
       ))}
     </PageWrapper>

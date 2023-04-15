@@ -1,0 +1,71 @@
+@use "src/styles/vars";
+
+.collection-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  border-radius: vars.$border-radius-sm;
+  background: var(--second-color);
+  overflow: hidden;
+  color: var(--title-color);
+
+  &__wrapper {
+    text-decoration: none;
+  }
+
+  &__image-container {
+    position: relative;
+    aspect-ratio: 2 / 2.8;
+    min-width: 85px;
+    width: 85px;
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &__content {
+    padding: 12px;
+  }
+
+  &__checkbox {
+    position: absolute !important;
+    top: 12px;
+    right: 12px;
+  }
+
+  &__tag {
+    border-radius: calc(#{vars.$border-radius-sm / 2});
+    padding: 0 6px;
+    margin-bottom: 4px;
+    width: fit-content;
+    background: var(--contrast-color);
+    color: var(--dark-color);
+  }
+
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    line-clamp: 2;
+    box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: keep-all;
+    line-break: normal;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+
+  &__subtitle {
+    margin-top: 6px;
+  }
+}

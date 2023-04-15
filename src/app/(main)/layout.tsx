@@ -2,6 +2,7 @@ import '@styles/globals.scss';
 import './layout.scss';
 
 import { StorageKey } from '@core/values';
+import { ClientAuthProvider } from '@features/auth';
 import { NavbarSize } from '@features/navbar';
 import Navbar from '@features/navbar/components/Navbar/Navbar';
 import { useAuthStore } from '@processes/auth';
@@ -16,6 +17,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
 
   return (
     <div className="main-layout">
+      <ClientAuthProvider />
       <Navbar defaultSize={navbarSize} authorized={authorized} />
       <main className="main-layout__page">{children}</main>
     </div>

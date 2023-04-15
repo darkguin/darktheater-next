@@ -1,5 +1,6 @@
 import { Route, RoutesList } from '@core/values';
 import { CatalogMiddleware } from '@features/catalog';
+import { CollectionsMiddleware } from '@features/collections';
 import { AuthMiddleware, SessionMiddleware, UnAuthMiddleware } from '@processes/auth';
 import { Middleware, withMiddleware } from '@shared/middleware';
 import { NextRequest, NextResponse } from 'next/server';
@@ -8,6 +9,7 @@ const middlewares: Middleware[] = [
   AuthMiddleware,
   UnAuthMiddleware,
   CatalogMiddleware,
+  CollectionsMiddleware,
   SessionMiddleware,
 ];
 

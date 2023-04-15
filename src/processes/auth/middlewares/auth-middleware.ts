@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const AuthMiddleware = defineMiddleware({
   global: false,
-  paths: [Route.Profile],
+  paths: [Route.Profile, Route.Collections],
   handler(req: NextRequest) {
     const isAuth = isAuthByRequest(req);
     const redirectUrl = new URL(Route.Home, req.url);

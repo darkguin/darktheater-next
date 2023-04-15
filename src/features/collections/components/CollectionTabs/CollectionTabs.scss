@@ -1,0 +1,38 @@
+@use "src/styles/vars";
+
+.collection-tabs {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 22px;
+  width: 100%;
+  overflow: auto;
+
+  &__tab {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: var(--title-color);
+    transition: color 400ms, border-bottom-color 400ms;
+
+    &.active {
+      color: var(--contrast-color);
+      border-bottom: 2px solid var(--contrast-color);
+      transition: color 400ms, border-bottom-color 400ms;
+    }
+
+    @media screen and (min-width: vars.$screen-sm) {
+      &:not(.active):hover {
+        transition: color 400ms, border-bottom-color 400ms;
+        color: var(--contrast-color);
+      }
+    }
+  }
+
+  @media screen and (max-width: vars.$screen-sm) {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    &__tab.title-bold-3 {
+      font-size: 20px;
+    }
+  }
+}
