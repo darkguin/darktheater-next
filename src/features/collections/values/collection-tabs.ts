@@ -1,6 +1,8 @@
 import { CollectionType } from '@entities/collection';
 
-export const CollectionTabs = {
+export type CollectionTabsItem = { id: number; title: string };
+
+export const CollectionTabs: Record<CollectionType, CollectionTabsItem | null> = {
   [CollectionType.Favorite]: {
     id: 0,
     title: 'Favorite',
@@ -13,4 +15,5 @@ export const CollectionTabs = {
     id: 2,
     title: 'Completed',
   },
-} as Record<CollectionType, { id: number; title: string }>;
+  [CollectionType.History]: null,
+};

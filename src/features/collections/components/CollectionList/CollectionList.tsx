@@ -35,7 +35,6 @@ function CollectionList({ type, initItems, initPage = 1, offset = 35 }: Props) {
   };
 
   const fetchMoreItems = async () => {
-    console.log('load');
     const fetchedItems = await fetchByType(type, page, offset);
 
     setPage(page + 1);

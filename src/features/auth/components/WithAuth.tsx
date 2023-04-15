@@ -5,13 +5,13 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 
 function WithAuth({ children }: PropsWithChildren) {
   const { authorized } = useAuth();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
   useEffect(() => {
-    setIsVisible(authorized);
+    setIsAuthorized(authorized);
   }, [authorized]);
 
-  return <>{isVisible ? children : null}</>;
+  return <>{isAuthorized ? children : null}</>;
 }
 
 export default WithAuth;
