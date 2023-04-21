@@ -5,5 +5,7 @@ export * from './Checkbox';
 export * from './Cover';
 export * from './FontIcon';
 export * from './ModalView';
+export * from './Multiselect';
+export * from './Select';
 export * from './Slider';
 export * from './TextField';

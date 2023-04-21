@@ -12,7 +12,8 @@
   color: var(--title-color);
   font-size: 18px;
   min-height: 38px;
-  min-width: 264px;
+  //min-width: 264px;
+  min-width: auto;
   outline: none;
   padding: 14px;
   transition: all 0.5s;
@@ -45,6 +46,7 @@
     box-sizing: border-box;
     position: relative;
     width: 100%;
+    min-width: auto;
   }
 
   &__error-msg {
@@ -103,13 +105,5 @@
     -webkit-box-shadow: 0 0 0 1000px var(--input-bg-color) inset;
     -webkit-text-fill-color: var(--descriptions-color);
     transition: background-color 5000s ease-in-out 0s;
-  }
-}
-
-@media screen and (max-width: vars.$screen-sm) {
-  .text-field__wrapper,
-  .text-field {
-    min-width: 100%;
-    width: 100%;
   }
 }

@@ -1,5 +1,6 @@
 export { default as CatalogList } from './components/CatalogList/CatalogList';
 export { default as CatalogListLoader } from './components/CatalogListLoader';
+export { default as CatalogSidebar } from './components/CatalogSidebar/CatalogSidebar';
 export { default as CatalogTabs } from './components/CatalogTabs/CatalogTabs';
 export * from './middlewares';
 export * from './utils';
