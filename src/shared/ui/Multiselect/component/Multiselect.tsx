@@ -6,13 +6,13 @@ import { FontIcon, Icons, SelectOption } from '@shared/ui';
 import clsx from 'clsx';
 import { ChangeEvent, MouseEvent, useState } from 'react';
 
-type Props = {
+interface Props {
   className?: string;
   placeholder?: string;
   options?: SelectOption[];
   defaultValue?: SelectOption[];
   onSelect?: (options: SelectOption[]) => void;
-};
+}
 
 function Multiselect({
   className,

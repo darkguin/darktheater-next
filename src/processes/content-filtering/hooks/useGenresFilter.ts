@@ -16,11 +16,11 @@ export function useGenresFilter() {
     setGenres(options.map(({ value }) => value).filter(Boolean));
   };
 
-  const defaultGenres = (): SelectOption[] => {
+  const getDefaultGenres = (): SelectOption[] => {
     return getRawGenres()
       .map((genre) => ContentGenreFilterParams.options.find(({ value }) => value === genre))
       .filter(Boolean) as SelectOption[];
   };
 
-  return { genres, setGenres, onGenresSelected, defaultGenres };
+  return { genres, setGenres, onGenresSelected, getDefaultGenres };
 }

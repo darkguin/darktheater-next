@@ -13,15 +13,14 @@ export function useCountriesFilter() {
   const [countries, setCounties] = useState<string[]>(getRawCountries);
 
   const onCountriesSelected = (options: SelectOption[]) => {
-    console.log('onCountriesSelected', options);
     setCounties(options.map(({ value }) => value).filter(Boolean));
   };
 
-  const defaultCountries = (): SelectOption[] => {
+  const getDefaultCountries = (): SelectOption[] => {
     return getRawCountries()
       .map((country) => ContentCountryFilterParams.options.find(({ value }) => value === country))
       .filter(Boolean) as SelectOption[];
   };
 
-  return { countries, setCounties, defaultCountries, onCountriesSelected };
+  return { countries, setCounties, getDefaultCountries, onCountriesSelected };
 }

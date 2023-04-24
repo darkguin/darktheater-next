@@ -11,13 +11,13 @@ export interface SelectOption {
   value: string;
 }
 
-type Props = {
+interface Props {
   className?: string;
   placeholder?: string;
   options?: SelectOption[];
   defaultValue?: SelectOption;
   onSelect?: (option: SelectOption) => void;
-};
+}
 
 function Select({
   className,

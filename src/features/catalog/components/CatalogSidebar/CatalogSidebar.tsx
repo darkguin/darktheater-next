@@ -25,9 +25,9 @@ import { memo } from 'react';
 function CatalogSidebar() {
   const currentParams = useSearchParams();
 
-  const { sortOption, defaultSortOption, onSortOptionSelected } = useContentSort();
-  const { genres, defaultGenres, onGenresSelected } = useGenresFilter();
-  const { countries, defaultCountries, onCountriesSelected } = useCountriesFilter();
+  const { sortOption, getDefaultSortOption, onSortOptionSelected } = useContentSort();
+  const { genres, getDefaultGenres, onGenresSelected } = useGenresFilter();
+  const { countries, getDefaultCountries, onCountriesSelected } = useCountriesFilter();
   const { period, onStartPeriodChange, onEndPeriodChange } = usePeriodFilter();
 
   const getDefaultUrl = () => {
@@ -53,7 +53,7 @@ function CatalogSidebar() {
     <div className="catalog-sidebar">
       <Select
         {...ContentSortParams}
-        defaultValue={defaultSortOption()}
+        defaultValue={getDefaultSortOption()}
         onSelect={onSortOptionSelected}
       />
 
@@ -69,13 +69,13 @@ function CatalogSidebar() {
 
       <Multiselect
         {...ContentGenreFilterParams}
-        defaultValue={defaultGenres()}
+        defaultValue={getDefaultGenres()}
         onSelect={onGenresSelected}
       />
 
       <Multiselect
         {...ContentCountryFilterParams}
-        defaultValue={defaultCountries()}
+        defaultValue={getDefaultCountries()}
         onSelect={onCountriesSelected}
       />
 

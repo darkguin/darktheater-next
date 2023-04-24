@@ -16,11 +16,12 @@ export function useContentSort() {
     setSortOption(value);
   };
 
-  const defaultSortOption = (): SelectOption | undefined => {
+  const getDefaultSortOption = (): SelectOption | undefined => {
     const rawSortOption = getRawSortOption();
-    if (!rawSortOption) return;
-    return ContentSortParams.options.find(({ value }) => value === rawSortOption);
+    return rawSortOption
+      ? ContentSortParams.options.find(({ value }) => value === rawSortOption)
+      : undefined;
   };
 
-  return { sortOption, defaultSortOption, setSortOption, onSortOptionSelected };
+  return { sortOption, getDefaultSortOption, setSortOption, onSortOptionSelected };
 }
