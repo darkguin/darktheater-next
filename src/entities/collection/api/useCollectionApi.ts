@@ -6,7 +6,7 @@ import { createFetcherHeaders, createFetcherUrl, fetcher } from '@shared/fetcher
 import { isServer } from '@shared/utils';
 import { getCookie } from 'cookies-next';
 import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies';
-import { ReadonlyRequestCookies } from 'next/dist/server/app-render';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 import { ENDPOINTS } from '../values/endpoints';
 
