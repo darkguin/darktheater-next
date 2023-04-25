@@ -1,0 +1,37 @@
+.catalog-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+
+  &__title {
+    color: var(--title-color);
+
+    &-icon {
+      font-size: 18px;
+      margin-right: 12px;
+    }
+  }
+
+  &__info {
+    color: var(--descriptions-color);
+    opacity: 0.5;
+
+    &-icon {
+      margin-right: 6px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    color: var(--title-color);
+  }
+
+  &__button {
+    margin-top: 16px;
+  }
+}

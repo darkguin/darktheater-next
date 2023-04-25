@@ -6,6 +6,7 @@ import { Player as DarkviPlayer } from '@darkvi/core';
 import { HLSModule } from '@darkvi/hls';
 import {
   FullscreenControl,
+  Loader,
   PlayControl,
   Player as PlayerLayout,
   Poster,
@@ -30,6 +31,7 @@ function Player({ src, poster }: Props) {
       <FullscreenControl />
       <VolumeControl />
       <Time />
+      <Loader />
     </PlayerLayout>
   );
 }

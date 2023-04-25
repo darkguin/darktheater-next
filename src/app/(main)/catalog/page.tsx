@@ -2,7 +2,7 @@ import './page.scss';
 
 import { useMovieApi } from '@entities/movie';
 import { useSerialApi } from '@entities/serial';
-import { CatalogList, CatalogTabs, CatalogType } from '@features/catalog';
+import { CatalogList, CatalogSidebar, CatalogTabs, CatalogType } from '@features/catalog';
 import { PageWrapper } from '@features/page-wrapper';
 
 interface Props {
@@ -20,11 +20,11 @@ export default async function Catalog({ searchParams }: Props) {
   const { fetchAll: fetchSerials } = useSerialApi();
 
   const items = isSerialsCatalog
-    ? await fetchSerials(PAGE, OFFSET)
-    : await fetchMovies(PAGE, OFFSET);
+    ? await fetchSerials(PAGE, OFFSET, searchParams)
+    : await fetchMovies(PAGE, OFFSET, searchParams);
 
   return (
-    <PageWrapper sidebar={<div></div>}>
+    <PageWrapper sidebar={<CatalogSidebar />}>
       <CatalogTabs activeType={currentType} />
       <CatalogList type={currentType} initItems={items} initPage={PAGE + 1} offset={OFFSET} />
     </PageWrapper>

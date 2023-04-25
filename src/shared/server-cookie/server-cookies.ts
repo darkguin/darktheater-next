@@ -1,5 +1,5 @@
 import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies';
-import { ReadonlyRequestCookies } from 'next/dist/server/app-render';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 
 /**
  * Current NextResponse cookies.
